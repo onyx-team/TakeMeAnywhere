@@ -24,7 +24,7 @@
   > "I was feeling really bad and just needed to get away. #TMA suggested I go to Jamaica, which I never would've chosen. Best Day Ever!!!"
                         - Barack Obama
 
-    "The city can get so tiring and busy. I just needed to go to nature. #TMA sent me to the Tundra. Much Adventure."
+  > "The city can get so tiring and busy. I just needed to go to nature. #TMA sent me to the Tundra. Much Adventure."
 
                         - Snoop Dogg
 

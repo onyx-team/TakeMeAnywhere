@@ -17,7 +17,7 @@ class MoodPageEntry extends React.Component {
     }
     return (
       <div style={moodStyles} className="col-xs-3">
-        {this.props.moods}
+        {this.props.moods.mood}
       </div>
     )
   }

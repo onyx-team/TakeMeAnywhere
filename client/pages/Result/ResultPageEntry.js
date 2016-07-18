@@ -1,26 +1,23 @@
 import React from 'react';
 
-class MoodPageEntry extends React.Component {
+class ResultPageEntry extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
-    var colors = ['red','blue','green','purple','pink', 'yellow'];
-    var opacity = Math.random();
+    console.log("PROPS FOR RESULT PAGE ENTRY", this.props);
 
-    var moodStyles = {
-      height: 200,
-      background: colors[Math.floor(Math.random() * colors.length)],
-       margin: 10 + 'px',
-      opacity: opacity
+    var resultStyle = {
+      backgroundColor: 'lightgrey',
+      margin: '10px',
+      border: '1px solid grey'
     }
     return (
-      <div style={moodStyles} className="col-xs-3">
-        {this.props.moods.mood}
+      <div style={resultStyle}>
       </div>
     )
   }
 }
 
-export default MoodPageEntry;
+export default ResultPageEntry;

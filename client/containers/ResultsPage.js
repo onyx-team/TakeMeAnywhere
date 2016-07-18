@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ResultPageEntry from '../pages/Results/ResultPageEntry.js';
+import ResultPageEntry from '../pages/Results/ResultsPageEntry.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import resultSelector from '../actions/index';
@@ -38,6 +38,6 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({moodSelector: moodSelector}, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoodPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
 
 

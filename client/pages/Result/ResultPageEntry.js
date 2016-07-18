@@ -8,13 +8,13 @@ class ResultPageEntry extends React.Component {
   render() {
     console.log("PROPS FOR RESULT PAGE ENTRY", this.props);
 
-    var resultStyle = {
-      backgroundColor: 'lightgrey',
-      margin: '10px',
-      border: '1px solid grey'
-    }
     return (
-      <div style={resultStyle}>
+       <div className='result'>
+        <div className='destImgContainer'>
+         <img className='destImg' src={this.props.result.img} />
+        </div>
+        <p className='floatLeft'>{this.props.result.dest}</p>
+        <div className='floatRight'>{this.props.result.price}</div>
       </div>
     )
   }

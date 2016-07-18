@@ -1,0 +1,46 @@
+body {
+  background-color: white;
+}
+.destination {
+  padding: 0px 50px;
+  font: italic bold 24px serif;
+}
+.price {
+  padding: 0px 50px;
+}
+
+h2 {
+  color: purple;
+  display: block;
+
+}
+
+.destImg {
+  max-height: 240px;
+  margin: 0 auto;
+}
+
+.destImgContainer {
+  border-radius: 10px;
+  margin-left: 10px;
+  height: 240px;
+  width: 240px;
+  overflow: hidden;
+}
+
+.floatRight {
+  display: block;
+  float: right;
+  clear: both;
+}
+
+.floatLeft {
+  display: block;
+  float: left;
+}
+
+.result {
+  background-color: lightgrey;
+  margin: 10px;
+  border: 1px solid grey;
+}

@@ -29,3 +29,8 @@ node_modules/
 bower_components/
 client/lib
 
+# Floobits
+.floo
+.floobit
+.floo
+.flooignore

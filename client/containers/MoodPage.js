@@ -15,8 +15,8 @@ class MoodPage extends React.Component {
   }
 
   onMoodClick(mood) {
-    this.props.setMood(mood);
-    window.location.hash ='#/result';
+    this.props.moodSelector(mood);
+    window.location.hash ='#/constraints';
   }
 
   render() {

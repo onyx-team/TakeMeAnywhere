@@ -11,6 +11,7 @@ export function setMood(mood) {
 }
 
 export function moodSelector(mood) {
+  console.log("THE MOOD ", mood);
   return {
     type: FETCH_MOOD,
     payload: mood

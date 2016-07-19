@@ -5,6 +5,8 @@ import { Router, Route, Link, hashHistory, IndexRoute} from 'react-router';
 import MoodPage from './containers/MoodPage.js';
 import AboutPage from './pages/About/AboutPage.js';
 import ResultPage from './containers/ResultPage.js';
+import Constraints from './containers/ConstraintsPage.js';
+
 
 
 export default (
@@ -12,5 +14,6 @@ export default (
     <Route path="mood" component={MoodPage} />
     <Route path="about" component={AboutPage} />
     <Route path="result" component={ResultPage} />
+    <Route path="constraints" component={Constraints} />
   </Route>
 )

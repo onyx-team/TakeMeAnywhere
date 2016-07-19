@@ -29,19 +29,3 @@
 
 ## Closing and Call to Action ##
   > Life's short. Get away when you can.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

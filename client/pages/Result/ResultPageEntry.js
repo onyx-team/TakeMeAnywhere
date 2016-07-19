@@ -7,7 +7,7 @@ class ResultPageEntry extends React.Component {
 
   render() {
     return (
-       <div className='result overflow' onClick={this.props.onClick.bind(this)}>
+       <div className='result overflow' onClick={this.props.onClick}>
         <div className='description'>
           <img className='destImg' src={this.props.result.img} />
           <p className='destination'>{this.props.result.dest}</p>

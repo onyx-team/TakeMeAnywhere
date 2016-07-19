@@ -20,7 +20,7 @@ class ResultPage extends React.Component {
       <div>
         {this.props.results.map((result, i) =>
           <ResultPageEntry
-            onClick={this.onResultClick}
+            onClick={this.onResultClick.bind(this)}
             key={i}
             result={result} />
         )}

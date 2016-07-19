@@ -30,6 +30,7 @@
     "react-router": "^2.5.2",
     "redux": "^3.5.2",
     "redux-promise": "^0.5.3",
+    "skyscanner": "^0.1.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   }

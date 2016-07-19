@@ -8,17 +8,14 @@ import resultSelector from '../actions/index';
 class ResultPage extends React.Component {
   constructor(props) {
     super(props);
-    this.onMoodClick = this.onResultClick.bind(this);
+    this.onResultClick = this.onResultClick;
   }
 
-  onResultClick(event) {
-    //Maybe go to page with more detail?
-    //Full flight information, full list of things to do, nearby
-    //hotels, weather
+  onResultClick() {
+    console.log("Omg you clicked", arguments);
   }
 
   render() {
-    console.log("props in result page", this.props);
     return (
       <div>
         {this.props.results.map((result, i) =>
@@ -30,7 +27,6 @@ class ResultPage extends React.Component {
       </div>
     )
   }
-
 }
 
 

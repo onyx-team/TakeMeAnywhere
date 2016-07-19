@@ -1,46 +1,59 @@
 body {
   background-color: white;
-}
-.destination {
-  padding: 0px 50px;
-  font: italic bold 24px serif;
-}
-.price {
-  padding: 0px 50px;
+  height: 100%;
 }
 
 h2 {
   color: purple;
-  display: block;
 
 }
 
-.destImg {
-  max-height: 240px;
-  margin: 0 auto;
-}
-
-.destImgContainer {
-  border-radius: 10px;
-  margin-left: 10px;
+img {
+  border-radius: 50px;
   height: 240px;
-  width: 240px;
-  overflow: hidden;
+  max-width: 240px;
+  float: left;
+  margin: 10px;
 }
 
-.floatRight {
-  display: block;
-  float: right;
-  clear: both;
+.app {
+  height: 100%;
+  width: 100%;
 }
 
-.floatLeft {
-  display: block;
+.clearfix {
+  overflow: auto;
+}
+
+.description {
+  max-width: 80%;
+  padding-top: 1em;
   float: left;
 }
 
+.destImg {
+  margin-left: 0;
+}
+
+.destination {
+  font-size: 2em;
+}
+
+.price {
+  float: right;
+  clear: right;
+  font-size: 2em;
+  margin-right: 1em;
+  text-align: right;
+  display: inline-block;
+  padding: 1em;
+}
+
 .result {
-  background-color: lightgrey;
+  float: left;
+  width: 90%;
+  background-color: whitesmoke;
   margin: 10px;
-  border: 1px solid grey;
+  border-radius: 10px;
+  margin: 10px 5% 10px 5%;
 }

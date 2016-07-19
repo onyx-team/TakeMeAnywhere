@@ -4,11 +4,13 @@ import App from './pages/App/App.js';
 import { Router, Route, Link, hashHistory, IndexRoute} from 'react-router';
 import MoodPage from './containers/MoodPage.js';
 import AboutPage from './pages/About/AboutPage.js';
+import ResultPage from './containers/ResultPage.js';
 
 
 export default (
   <Route path="/" component={App}>
     <Route path="mood" component={MoodPage} />
     <Route path="about" component={AboutPage} />
+    <Route path="result" component={ResultPage} />
   </Route>
 )

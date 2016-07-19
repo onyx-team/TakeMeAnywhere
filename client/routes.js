@@ -8,7 +8,6 @@ import ResultPage from './containers/ResultPage.js';
 import Constraints from './containers/ConstraintsPage.js';
 
 
-
 export default (
   <Route path="/" component={App}>
     <Route path="mood" component={MoodPage} />

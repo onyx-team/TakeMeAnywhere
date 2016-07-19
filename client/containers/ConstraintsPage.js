@@ -1,11 +1,8 @@
 import React from 'react';
 import { Router, Route, Link, hashHistory} from 'react-router';
-import Calendar from 'react-input-calendar'
-import moment from 'moment'
-import momentRange from 'moment-range'
 import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
-// import ConstraintsPageEntry from '../pages/Constraints/ConstraintsPageEntry.js';
+
 
 
 
@@ -100,7 +97,9 @@ class ConstraintsPage extends React.Component {
   }
 
   saveInput(autosuggest) {
-    this.input = autosuggest.input;
+    if (autosuggest) {
+      this.input = autosuggest.input;
+    }
   }
 
 

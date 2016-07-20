@@ -7,11 +7,6 @@ import { bindActionCreators } from 'redux';
 import resultSelector from '../actions/index';
 // import session from '..actions/requestHandler';
 import moodSelector from '../actions/index';
-<<<<<<< 7046383c8e289b9d2abe98b0cbcda1f40d5a8cad
-import MoodDetail from './mood_detail';
-
-=======
->>>>>>> Removes unnecessary Mood_Detail files. Removes console logs. Cleans up code.
 
 class ResultPage extends React.Component {
   constructor(props) {

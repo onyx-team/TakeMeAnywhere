@@ -1,13 +1,21 @@
-import { FETCH_RESULTS } from '../actions/index';
+import { FETCH_RESULTS } from '../actions/types';
 
 export default function(state=null, action) {
-  // switch(action.type) {
-  //   case FETCH_MOOD:
-  //     return action.payload;
-  // }
-
-  // return;
-
+  switch(action.type) {
+    case FETCH_RESULTS:
+      // return action.payload;
+      return [
+      {
+      dest: 'Denver',
+      origin: 'Cincinatti',
+      price: '$400',
+      startDate: '2016-7-25',
+      endDate: '2016-8-01',
+      description: 'Artisan neutra godard tacos. Gentrify jean shorts next level forage kitsch trust fund kinfolk, kombucha salvia semiotics retro thundercats. Vinyl gentrify photo booth, twee try-hard kombucha fingerstache art party affogato chia ethical flannel hoodie. ',
+      img: 'https://quickbooksmadeeasy.com/wp-content/uploads/2015/02/denver_Skyline.jpg'
+    }
+  ]
+}
   return [
     {
     dest: 'Denver',

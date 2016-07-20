@@ -7,6 +7,7 @@ import PromiseHandler from './middlewares/promise_handler';
 import { Router, Route, Link, hashHistory, IndexRoute} from 'react-router';
 import routes from './routes.js';
 import reducers from './reducers';
+import PromiseHandler from './middlewares/promise_handler';
 
 const createStoreWithMiddleware = applyMiddleware(PromiseHandler)(createStore);
 

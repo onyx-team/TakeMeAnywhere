@@ -45,3 +45,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({resultSelector: resultSelector, setMood: setMood, moodSelector: moodSelector}, dispatch);
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultPage);
+
+

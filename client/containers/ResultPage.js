@@ -14,12 +14,16 @@ class ResultPage extends React.Component {
     this.onResultClick = this.onResultClick;
   }
 
-  onResultClick(result) {
-    console.log("Omg you clicked", result);
+  componentWillMount() {
+    console.log("IN RESULT", this.props);
+  }
+
+
+  onResultClick() {
+    console.log("Omg you clicked", arguments);
   }
 
   render() {
-    console.log("Rendering Result", this.props);
     return (
       <div>
         {this.props.results.map((result, i) =>

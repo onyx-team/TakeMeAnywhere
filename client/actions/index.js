@@ -1,7 +1,10 @@
+// Constant Actions
 export const FETCH_MOOD = 'FETCH_MOOD';
 export const FETCH_RESULTS= 'FETCH_RESULTS';
 export const FETCH_FLIGHTS = 'FETCH_FLIGHTS';
 export const SET_MOOD= 'SET_MOOD';
+
+
 
 export function setMood(mood) {
   return {

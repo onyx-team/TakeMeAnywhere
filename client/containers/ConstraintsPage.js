@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { constraintSelector } from '../actions/index';
 import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
+import Util from '../utils/utils';
 
 
 function escapeRegexCharacters(str) {
@@ -58,6 +59,10 @@ class ConstraintsPage extends React.Component {
     this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this);
     this.saveInput = this.saveInput.bind(this);
     this.onSubmitClick = this.onSubmitClick.bind(this);
+  }
+
+  componentWillMount() {
+    console.log("IN CONTRAINTS", this.props);
   }
 
   changeCity(event) {
@@ -193,7 +198,9 @@ class ConstraintsPage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    constraints: state.constraints
+    results: state.results,
+    moods: state.moods,
+    activeMood: state.activeMood
   }
 }
 

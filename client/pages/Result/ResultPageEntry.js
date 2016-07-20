@@ -1,5 +1,4 @@
 import React from 'react';
-//import MoodDetail from '../../containers/mood_detail.js';
 
 class ResultPageEntry extends React.Component {
   constructor(props) {

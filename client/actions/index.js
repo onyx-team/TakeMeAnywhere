@@ -5,6 +5,7 @@ export const FETCH_FLIGHTS = 'FETCH_FLIGHTS';
 export const SET_MOOD= 'SET_MOOD';
 
 
+
 export function setMood(mood) {
   return {
     type: SET_MOOD,

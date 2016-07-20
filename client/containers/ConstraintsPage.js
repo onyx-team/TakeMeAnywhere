@@ -1,11 +1,8 @@
 import React from 'react';
 import { Router, Route, Link, hashHistory} from 'react-router';
-<<<<<<< 352e03f01385e58b02c804a964b7d2fd320d6315
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { constraintSelector } from '../actions/index';
-=======
->>>>>>> register state for both mood and result page
 import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
 

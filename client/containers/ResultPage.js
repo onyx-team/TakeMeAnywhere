@@ -14,25 +14,16 @@ class ResultPage extends React.Component {
     this.onResultClick = this.onResultClick;
   }
 
-<<<<<<< ecd98e4d897468289e90a4c7a17bdf2e0eeb37a1
-  onResultClick(result) {
-    console.log("Omg you clicked", result);
-=======
   componentWillMount() {
 
   }
 
+
   onResultClick() {
     console.log("Omg you clicked", arguments);
->>>>>>> register state for both mood and result page
   }
 
   render() {
-<<<<<<< ecd98e4d897468289e90a4c7a17bdf2e0eeb37a1
-    console.log("Rendering Result", this.props);
-=======
-
->>>>>>> register state for both mood and result page
     return (
       <div>
         {this.props.results.map((result, i) =>
@@ -48,14 +39,9 @@ class ResultPage extends React.Component {
 //moodData will now be available as props in MoodPage class
 function mapStateToProps(state) {
   return {
-<<<<<<< ecd98e4d897468289e90a4c7a17bdf2e0eeb37a1
     results: state.results,
     moods: state.moods,
     activeMood: state.activeMood
-=======
-    moods: state.moods,
-    results: state.results
->>>>>>> register state for both mood and result page
   }
 }
 

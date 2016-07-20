@@ -38,11 +38,7 @@ class MoodPage extends React.Component {
 function mapStateToProps(state) {
   return {
     moods: state.moods,
-<<<<<<< ecd98e4d897468289e90a4c7a17bdf2e0eeb37a1
     activeMood: state.activeMood
-=======
-    results: state.results
->>>>>>> register state for both mood and result page
   }
 }
 
@@ -50,10 +46,5 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({moodSelector: moodSelector, setMood: setMood}, dispatch);
 }
 
-<<<<<<< ecd98e4d897468289e90a4c7a17bdf2e0eeb37a1
 export default connect(mapStateToProps, mapDispatchToProps)(MoodPage);
-=======
-export default connect(mapStateToProps, mapDispatchToProps)(MoodPage, ResultPage);
 
-
->>>>>>> register state for both mood and result page

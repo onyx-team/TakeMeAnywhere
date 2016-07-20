@@ -3,6 +3,7 @@ import { Router, Route, Link, hashHistory} from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { constraintSelector } from '../actions/index';
+
 import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
 
@@ -102,6 +103,8 @@ class ConstraintsPage extends React.Component {
 
   saveInput(autosuggest) {
     if (autosuggest) {
+
+    if (autosuggest){
       this.input = autosuggest.input;
     }
   }
@@ -190,7 +193,6 @@ class ConstraintsPage extends React.Component {
       </div>
     )
   }
-
 }
 
 function mapStateToProps(state) {
@@ -199,10 +201,9 @@ function mapStateToProps(state) {
   }
 }
 
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({constraintSelector: constraintSelector}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConstraintsPage);
-
-

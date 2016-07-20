@@ -3,11 +3,8 @@ import { Router, Route, Link, hashHistory} from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { constraintSelector } from '../actions/index';
-
 import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
-
-
 
 
 function escapeRegexCharacters(str) {
@@ -102,7 +99,6 @@ class ConstraintsPage extends React.Component {
   }
 
   saveInput(autosuggest) {
-    if (autosuggest) {
 
     if (autosuggest){
       this.input = autosuggest.input;

@@ -8,7 +8,7 @@ import ActiveMoodReducer from './reducer_active_mood';
 const rootReducer = combineReducers({
   moods: MoodReducer,
   results: ResultReducer,
-  constraints: ConstraintReducer
+  constraints: ConstraintReducer,
   activeMood : ActiveMoodReducer
 });
 

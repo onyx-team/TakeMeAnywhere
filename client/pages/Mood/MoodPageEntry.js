@@ -21,7 +21,6 @@ class MoodPageEntry extends React.Component {
         onClick={(this.props.onMoodClick)}
         style={moodStyles}
         className="col-xs-3">
-      <div style={moodStyles} className="col-xs-3" onClick={this.props.onClick}>
         {this.props.moods.mood}
       </div>
     )

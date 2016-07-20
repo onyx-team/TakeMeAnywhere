@@ -28,6 +28,7 @@ var team = [
   ]
 
 const AboutPage = (props) => {
+  console.log("About page props", props)
   return (
     <div>
       {team.map((team, i) =>

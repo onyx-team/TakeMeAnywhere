@@ -18,9 +18,6 @@ class ResultPage extends React.Component {
     console.log("Omg you clicked", result);
   }
 
-  // componentWillMount() {
-  //   session();
-  // }
   render() {
     console.log("Rendering Result", this.props);
     return (
@@ -37,13 +34,6 @@ class ResultPage extends React.Component {
 }
 //moodData will now be available as props in MoodPage class
 function mapStateToProps(state) {
-<<<<<<< 7046383c8e289b9d2abe98b0cbcda1f40d5a8cad
-  console.log(state)
-
-  console.log("State change in Result", state);
-
-=======
->>>>>>> Removes unnecessary Mood_Detail files. Removes console logs. Cleans up code.
   return {
     results: state.results,
     moods: state.moods,

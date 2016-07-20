@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
   //importing the action creator
 import { moodSelector } from '../actions/index';
   //binds action creator to MoodPage
+import { setMood } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 class MoodPage extends React.Component {
@@ -14,38 +15,33 @@ class MoodPage extends React.Component {
   }
 
   onMoodClick(mood) {
-    this.props.moodSelector(mood);
-    window.location.hash ='#/about';
+    this.props.setMood(mood);
+    window.location.hash ='#/result';
   }
 
   render() {
-    console.log(this.props.moods);
     return (
       <div>
         {this.props.moods.map((mood, i) =>
           <MoodPageEntry
-            onMoodClick={() => this.onMoodClick(mood)}
+            onMoodClick={() => this.onMoodClick(mood) }
             key={i}
             moods={mood} />
         )}
       </div>
     )
   }
-
 }
-
-
 //moodData will now be available as props in MoodPage class
 function mapStateToProps(state) {
   return {
-    moods: state.moods
+    moods: state.moods,
+    activeMood: state.activeMood
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({moodSelector: moodSelector}, dispatch);
+  return bindActionCreators({moodSelector: moodSelector, setMood: setMood}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoodPage);
-
-

@@ -7,8 +7,6 @@ import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
 
 
-
-
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -101,7 +99,8 @@ class ConstraintsPage extends React.Component {
   }
 
   saveInput(autosuggest) {
-    if (autosuggest) {
+
+    if (autosuggest){
       this.input = autosuggest.input;
     }
   }
@@ -190,7 +189,6 @@ class ConstraintsPage extends React.Component {
       </div>
     )
   }
-
 }
 
 function mapStateToProps(state) {
@@ -199,10 +197,9 @@ function mapStateToProps(state) {
   }
 }
 
+
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({constraintSelector: constraintSelector}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConstraintsPage);
-
-

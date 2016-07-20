@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ResultPageEntry from '../pages/Result/ResultPageEntry.js';
 import { connect } from 'react-redux';
+import { setMood } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import resultSelector from '../actions/index';
 // import session from '..actions/requestHandler';
+import moodSelector from '../actions/index';
 
 class ResultPage extends React.Component {
   constructor(props) {
@@ -12,19 +14,17 @@ class ResultPage extends React.Component {
     this.onResultClick = this.onResultClick;
   }
 
-  onResultClick() {
-    console.log("Omg you clicked", arguments);
+  onResultClick(result) {
+    console.log("Omg you clicked", result);
   }
 
-  // componentWillMount() {
-  //   session();
-  // }
   render() {
+    console.log("Rendering Result", this.props);
     return (
       <div>
         {this.props.results.map((result, i) =>
           <ResultPageEntry
-            onClick={this.onResultClick.bind(this)}
+            onClick={ () => this.onResultClick(result) }
             key={i}
             result={result} />
         )}
@@ -32,19 +32,18 @@ class ResultPage extends React.Component {
     )
   }
 }
-
-
 //moodData will now be available as props in MoodPage class
 function mapStateToProps(state) {
-  console.log(state)
   return {
-    results: state.results
+    results: state.results,
+    moods: state.moods,
+    activeMood: state.activeMood
   }
 }
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({resultSelector: resultSelector}, dispatch);
+  return bindActionCreators({resultSelector: resultSelector, setMood: setMood, moodSelector: moodSelector}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultPage);

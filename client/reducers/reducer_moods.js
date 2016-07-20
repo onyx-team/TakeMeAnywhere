@@ -1,6 +1,7 @@
 import { FETCH_MOOD } from '../actions/index';
+import { SET_MOOD } from '../actions/index';
 
-export default function() {
+export default function(state=null, action) {
 
   return [
     { mood: 'party' },
@@ -11,6 +12,13 @@ export default function() {
     { mood: 'romantic' },
     { mood: 'foodie' },
     { mood: 'historic' },
-    { mood: 'family' }
+    { mood: 'family' },
+    { mood: 'adventure'},
+    { mood: 'city'},
+    { mood: 'solitude'},
+    { mood: 'romantic'},
+    { mood: 'foodie'},
+    { mood: 'historic'},
+    { mood: 'family'}
   ]
 };

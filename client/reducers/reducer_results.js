@@ -16,7 +16,7 @@ export default function(state=null, action) {
     startDate: '2016-7-25',
     endDate: '2016-8-01',
     description: 'Artisan neutra godard tacos. Gentrify jean shorts next level forage kitsch trust fund kinfolk, kombucha salvia semiotics retro thundercats. Vinyl gentrify photo booth, twee try-hard kombucha fingerstache art party affogato chia ethical flannel hoodie. ',
-    img: 'https://quickbooksmadeeasy.com/wp-content/uploads/2015/02/denver_Skyline.jpg'
+    img: 'http://guardandgrace.com/wp-content/uploads/2015/11/denver_skyline2.jpg'
   },
   {
     dest: 'Los Angeles',

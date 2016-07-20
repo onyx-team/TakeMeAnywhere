@@ -15,7 +15,7 @@ class ResultPage extends React.Component {
   }
 
   componentWillMount() {
-
+    console.log("IN RESULT", this.props);
   }
 
 

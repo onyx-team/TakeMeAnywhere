@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import MoodPageEntry from '../pages/Mood/MoodPageEntry.js';
+  //connects this props and state in reducer
 import { connect } from 'react-redux';
+  //importing the action creator
+import { moodSelector } from '../actions/index';
+  //binds action creator to MoodPage
 import { bindActionCreators } from 'redux';
-import moodSelector from '../actions/index';
 
 class MoodPage extends React.Component {
   constructor(props) {
@@ -11,15 +13,18 @@ class MoodPage extends React.Component {
     this.onMoodClick = this.onMoodClick.bind(this);
   }
 
-  onMoodClick(event) {
-    //do stuff
+  onMoodClick(mood) {
+    this.props.moodSelector(mood);
+    window.location.hash ='#/about';
   }
+
   render() {
+    console.log(this.props.moods);
     return (
       <div>
         {this.props.moods.map((mood, i) =>
           <MoodPageEntry
-            onClick={this.onMoodClick}
+            onMoodClick={() => this.onMoodClick(mood)}
             key={i}
             moods={mood} />
         )}
@@ -36,7 +41,6 @@ function mapStateToProps(state) {
     moods: state.moods
   }
 }
-
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({moodSelector: moodSelector}, dispatch);

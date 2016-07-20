@@ -1,11 +1,11 @@
 import React from 'react';
 import { Router, Route, Link, hashHistory} from 'react-router';
-import Calendar from 'react-input-calendar'
-import moment from 'moment'
-import momentRange from 'moment-range'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { constraintSelector } from '../actions/index';
 import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
-// import ConstraintsPageEntry from '../pages/Constraints/ConstraintsPageEntry.js';
+
 
 
 
@@ -26,7 +26,8 @@ function getSuggestions(value) {
 }
 
 function getSuggestionValue(suggestion) {
-  return suggestion.name;
+
+    return suggestion.iata;
 }
 
 
@@ -42,7 +43,6 @@ class ConstraintsPage extends React.Component {
     this.state = {
       value: '',
       suggestions: getSuggestions(''),
-      city: 'SFO',
       price: 400,
       depDate: '',
       returnDate: '',
@@ -59,6 +59,7 @@ class ConstraintsPage extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this);
     this.saveInput = this.saveInput.bind(this);
+    this.onSubmitClick = this.onSubmitClick.bind(this);
   }
 
   changeCity(event) {
@@ -100,9 +101,16 @@ class ConstraintsPage extends React.Component {
   }
 
   saveInput(autosuggest) {
-    this.input = autosuggest.input;
+    if (autosuggest) {
+      this.input = autosuggest.input;
+    }
   }
 
+  onSubmitClick() {
+    var st = arguments[0];
+    this.props.constraintSelector(st);
+    window.location.hash = '#/result'
+  }
 
   render() {
     var formStyle = {
@@ -124,7 +132,7 @@ class ConstraintsPage extends React.Component {
                    renderSuggestion={renderSuggestion}
                    inputProps={inputProps}
                    ref={this.saveInput} />
-        <h3>Price {this.state.price}</h3>
+        <h3>Price: ${this.state.price}</h3>
         <input type="range"
           id="price"
           style={formStyle}
@@ -176,16 +184,25 @@ class ConstraintsPage extends React.Component {
         </select>
         <br/>
         <br/>
-        <button className="btn btn-primary">Submit</button>
+        <button className="btn btn-primary"
+        onClick={() => this.onSubmitClick(this.state)}
+        >Submit</button>
       </div>
     )
   }
 
 }
 
+function mapStateToProps(state) {
+  return {
+    constraints: state.constraints
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({constraintSelector: constraintSelector}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConstraintsPage);
 
 
-
-
-
-export default ConstraintsPage;

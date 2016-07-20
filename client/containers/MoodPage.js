@@ -9,8 +9,11 @@ import { bindActionCreators } from 'redux';
 import { setMood } from '../actions/index'
 import { bindActionCreators } from 'redux';
 import moodSelector from '../actions/index';
+<<<<<<< 7046383c8e289b9d2abe98b0cbcda1f40d5a8cad
 import MoodDetail from './mood_detail';
 
+=======
+>>>>>>> Removes unnecessary Mood_Detail files. Removes console logs. Cleans up code.
 
 class MoodPage extends React.Component {
   constructor(props) {
@@ -56,7 +59,6 @@ class MoodPage extends React.Component {
 }
 //moodData will now be available as props in MoodPage class
 function mapStateToProps(state) {
-  console.log("State changed Mood Page", state);
   return {
     moods: state.moods,
     activeMood: state.activeMood
@@ -68,5 +70,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoodPage);
-
-

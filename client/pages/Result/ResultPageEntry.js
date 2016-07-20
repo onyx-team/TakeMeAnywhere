@@ -1,5 +1,5 @@
 import React from 'react';
-import MoodDetail from '../../containers/mood_detail.js';
+//import MoodDetail from '../../containers/mood_detail.js';
 
 class ResultPageEntry extends React.Component {
   constructor(props) {
@@ -9,7 +9,6 @@ class ResultPageEntry extends React.Component {
   render() {
     return (
       <div>
-      <MoodDetail />
        <div className='result overflow' onClick={this.props.onClick}>
 
         <div className='description'>

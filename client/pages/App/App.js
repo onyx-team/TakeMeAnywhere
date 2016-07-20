@@ -5,7 +5,6 @@ import MoodPage from '../../containers/MoodPage.js';
 import AboutPage from '../About/AboutPage.js';
 import ResultPage from '../../containers/ResultPage.js';
 import ConstraintsPage from '../../containers/ConstraintsPage.js';
-import MoodDetail from '../../containers/mood_detail.js';
 
 
 class App extends React.Component {
@@ -14,7 +13,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log("App's props", this.props, this.state)
     return (
       <div>
         {this.props.children}

@@ -13,6 +13,6 @@ export default function(state=null, action) {
     { mood: 'romantic' },
     { mood: 'foodie' },
     { mood: 'historic' },
-    { mood: 'family' },
+    { mood: 'family' }
   ]
 };

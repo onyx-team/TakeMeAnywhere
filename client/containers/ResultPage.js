@@ -4,6 +4,7 @@ import ResultPageEntry from '../pages/Result/ResultPageEntry.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import resultSelector from '../actions/index';
+// import session from '..actions/requestHandler';
 
 class ResultPage extends React.Component {
   constructor(props) {
@@ -15,6 +16,9 @@ class ResultPage extends React.Component {
     console.log("Omg you clicked", arguments);
   }
 
+  // componentWillMount() {
+  //   session();
+  // }
   render() {
     return (
       <div>
@@ -32,6 +36,7 @@ class ResultPage extends React.Component {
 
 //moodData will now be available as props in MoodPage class
 function mapStateToProps(state) {
+  console.log(state)
   return {
     results: state.results
   }
@@ -43,5 +48,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultPage);
-
-

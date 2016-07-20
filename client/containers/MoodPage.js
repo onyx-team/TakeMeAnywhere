@@ -19,7 +19,7 @@ class MoodPage extends React.Component {
   }
 
   render() {
-    console.log(this.props.moods)
+    console.log(this.props.moods);
     return (
       <div>
         {this.props.moods.map((mood, i) =>

@@ -2,10 +2,10 @@ import React from 'react';
 import { Router, Route, Link, hashHistory} from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { constraintSelector } from '../actions/index';
+import { setConstraints } from '../actions/index';
+import { setFlights } from '../actions/index';
 import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
-import Util from '../utils/utils';
 
 
 function escapeRegexCharacters(str) {
@@ -45,7 +45,7 @@ class ConstraintsPage extends React.Component {
       price: 400,
       depDate: '',
       returnDate: '',
-      adults: 4,
+      adults: 2,
       children: 0
 
     }
@@ -59,10 +59,6 @@ class ConstraintsPage extends React.Component {
     this.onSuggestionsUpdateRequested = this.onSuggestionsUpdateRequested.bind(this);
     this.saveInput = this.saveInput.bind(this);
     this.onSubmitClick = this.onSubmitClick.bind(this);
-  }
-
-  componentWillMount() {
-    console.log("IN CONTRAINTS", this.props);
   }
 
   changeCity(event) {
@@ -112,7 +108,8 @@ class ConstraintsPage extends React.Component {
 
   onSubmitClick() {
     var st = arguments[0];
-    this.props.constraintSelector(st);
+    //set constraints state
+    this.props.setConstraints([st]);
     window.location.hash = '#/result'
   }
 
@@ -122,7 +119,7 @@ class ConstraintsPage extends React.Component {
     }
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: "Type Airport",
+      placeholder: "Nearest Airport",
       value,
       onChange: this.onChange
     };
@@ -141,7 +138,7 @@ class ConstraintsPage extends React.Component {
           id="price"
           style={formStyle}
           min="100"
-          max="1000"
+          max="3000"
           value={this.state.price}
           onChange={this.changePrice}
           step="50" />
@@ -206,7 +203,7 @@ function mapStateToProps(state) {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({constraintSelector: constraintSelector}, dispatch);
+  return bindActionCreators({setConstraints: setConstraints}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConstraintsPage);

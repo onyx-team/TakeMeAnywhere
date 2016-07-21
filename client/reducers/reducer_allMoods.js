@@ -1,7 +1,3 @@
-import { FETCH_MOOD } from '../actions/index';
-import { SET_MOOD } from '../actions/index';
-
-
 export default function(state=null, action) {
 
   return [

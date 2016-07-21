@@ -1,25 +1,10 @@
-import { FETCH_FLIGHTS } from '../actions/index';
+import { SET_CONSTRAINTS } from '../actions/index';
 
 export default function(state=null, action) {
   switch(action.type) {
-    case FETCH_FLIGHTS:
+    case SET_CONSTRAINTS:
       return action.payload;
   }
 
-  return [
-    {
-      value: '',
-      suggestions: '',
-      city: 'SFO',
-      price: 400,
-      depDate: '',
-      returnDate: '',
-      adults: 5,
-      children: 0
-
-    }
-
-  ]
-
-
+  return state;
 }

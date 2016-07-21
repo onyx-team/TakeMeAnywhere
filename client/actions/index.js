@@ -1,21 +1,13 @@
 // Constant Actions
-export const FETCH_MOOD = 'FETCH_MOOD';
+
 export const FETCH_RESULTS= 'FETCH_RESULTS';
-export const FETCH_FLIGHTS = 'FETCH_FLIGHTS';
-export const SET_MOOD= 'SET_MOOD';
-
-
+export const SET_CONSTRAINTS = 'SET_CONSTRAINTS';
+export const SET_MOOD = 'SET_MOOD';
+export const SET_FLIGHTS = 'SET_FLIGHTS';
 
 export function setMood(mood) {
   return {
     type: SET_MOOD,
-    payload: mood
-  }
-}
-
-export function moodSelector(mood) {
-  return {
-    type: FETCH_MOOD,
     payload: mood
   }
 }
@@ -27,16 +19,18 @@ export function resultSelector(result) {
   }
 }
 
-export function constraintSelector(constraints) {
+export function setConstraints(constraints) {
+  console.log("Contraints Obj", constraints);
   return {
-    type: FETCH_FLIGHTS,
-    payload: {
-      value: constraints.value,
-      price: constraints.price,
-      depDate: constraints.depDate,
-      returnDate: constraints.returnDate,
-      adults: constraints.adults,
-      children: constraints.children
-    }
+    type: SET_CONSTRAINTS,
+    payload: constraints
+  }
+}
+
+//flights here should be the result of the get request
+export function setFlights(flights) {
+  return {
+    type: SET_FLIGHTS,
+    payload: flights
   }
 }

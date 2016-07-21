@@ -26973,16 +26973,15 @@
 	  _createClass(ResultPage, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-
+	      var context = this;
 	      this.searchFlights(this.props.constraints[0], function (flights) {
 	        console.log("returned data", flights);
-	        this.props.setFlights(flights);
+	        context.props.setFlights(flights);
 	      });
 	    }
 	  }, {
 	    key: 'searchFlights',
 	    value: function searchFlights(options, callback) {
-	      console.log("OPTIONS", options);
 
 	      var envelope = {
 	        origin: options.value,
@@ -27010,6 +27009,7 @@
 	    value: function render() {
 	      var _this2 = this;
 
+	      console.log("RENDER PROPS", this.props.results);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -27040,7 +27040,7 @@
 	}
 
 	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ resultSelector: _index2.default, setMood: _index.setMood, moodSelector: _index2.default }, dispatch);
+	  return (0, _redux.bindActionCreators)({ setFlights: _index.setFlights, resultSelector: _index2.default, setMood: _index.setMood, moodSelector: _index2.default }, dispatch);
 	}
 
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ResultPage);
@@ -27090,11 +27090,11 @@
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'description' },
-	            _react2.default.createElement('img', { className: 'destImg', src: this.props.result.img }),
+	            _react2.default.createElement('img', { className: 'destImg', src: this.props.result.airlineImg }),
 	            _react2.default.createElement(
 	              'p',
 	              { className: 'destination' },
-	              this.props.result.dest
+	              this.props.result.agent
 	            ),
 	            _react2.default.createElement(
 	              'p',
@@ -28599,9 +28599,10 @@
 
 	//flights here should be the result of the get request
 	function setFlights(flights) {
+	  console.log("PAYLOAD", flights);
 	  return {
 	    type: SET_FLIGHTS,
-	    payload: flights
+	    payload: flights.data
 	  };
 	}
 
@@ -30345,7 +30346,7 @@
 	          id: 'price',
 	          style: formStyle,
 	          min: '100',
-	          max: '1000',
+	          max: '3000',
 	          value: this.state.price,
 	          onChange: this.changePrice,
 	          step: '50' }),
@@ -32022,13 +32023,13 @@
 	});
 
 	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 	  var action = arguments[1];
 
 	  switch (action.type) {
-	    case _index.SET_CONSTRAINTS:
+	    case _index.SET_FLIGHTS:
 	      // return action.payload;
-	      return action.payload;
+	      return state.concat(action.payload);
 	  }
 	  return state;
 	};

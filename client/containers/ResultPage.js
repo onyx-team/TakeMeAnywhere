@@ -18,15 +18,14 @@ class ResultPage extends React.Component {
   }
 
   componentWillMount() {
-
+    var context = this;
     this.searchFlights(this.props.constraints[0], function(flights) {
       console.log("returned data", flights);
-      this.props.setFlights(flights);
+      context.props.setFlights(flights);
     });
   };
 
   searchFlights(options, callback) {
-    console.log("OPTIONS", options);
 
     const envelope = {
       origin: options.value,
@@ -53,6 +52,7 @@ class ResultPage extends React.Component {
   }
 
   render() {
+    console.log("RENDER PROPS", this.props.results);
     return (
       <div>
         {this.props.results.map((result, i) =>
@@ -77,7 +77,7 @@ function mapStateToProps(state) {
 
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({resultSelector: resultSelector, setMood: setMood, moodSelector: moodSelector}, dispatch);
+  return bindActionCreators({setFlights: setFlights, resultSelector: resultSelector, setMood: setMood, moodSelector: moodSelector}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultPage);

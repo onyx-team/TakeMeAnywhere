@@ -1,10 +1,10 @@
-import { SET_CONSTRAINTS } from '../actions/index';
+import { SET_FLIGHTS } from '../actions/index';
 
-export default function(state=null, action) {
+export default function(state=[], action) {
   switch(action.type) {
-    case SET_CONSTRAINTS:
+    case SET_FLIGHTS:
       // return action.payload;
-      return action.payload
+      return state.concat(action.payload);
 }
   return state;
 }

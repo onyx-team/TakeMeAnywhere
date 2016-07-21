@@ -138,7 +138,7 @@ class ConstraintsPage extends React.Component {
           id="price"
           style={formStyle}
           min="100"
-          max="1000"
+          max="3000"
           value={this.state.price}
           onChange={this.changePrice}
           step="50" />

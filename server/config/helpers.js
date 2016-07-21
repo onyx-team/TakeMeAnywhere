@@ -7,7 +7,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
   console.log("API_KEY", apikey);
   if(origin) origin+='-iata';
   if(dest) dest+='-iata';
-  if(!priceLimit) priceLimit = 150;
+  if(!priceLimit) priceLimit = 1500;
 
  request.post('http://partners.api.skyscanner.net/apiservices/pricing/v1.0/',{
   form:{
@@ -27,7 +27,6 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
       //filters from body and returns 5 lowest prices
       request.get(res.headers.location+'?apiKey='+apikey+'&pageindex=0&pagesize=5&sortorder=asc&sorttype=price' ,function(err, res, body){
 
-      console.log("HELPER BODY", body);
       body = JSON.parse(body);
 
        var agents = body.Agents;
@@ -79,7 +78,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
        //  console.log(data);
        // });
 
-
+        console.log("RESULTS HELPER", results)
         cb(results);
 
 

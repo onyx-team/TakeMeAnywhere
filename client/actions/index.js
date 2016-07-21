@@ -29,8 +29,9 @@ export function setConstraints(constraints) {
 
 //flights here should be the result of the get request
 export function setFlights(flights) {
+  console.log("PAYLOAD", flights);
   return {
     type: SET_FLIGHTS,
-    payload: flights
+    payload: flights.data
   }
 }

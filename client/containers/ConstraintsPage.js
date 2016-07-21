@@ -214,7 +214,8 @@ function mapStateToProps(state) {
   return {
     results: state.results,
     moods: state.moods,
-    activeMood: state.activeMood
+    activeMood: state.activeMood,
+    cities: state.cities
   }
 }
 

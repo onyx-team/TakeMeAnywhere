@@ -4,6 +4,7 @@ import MoodPageEntry from '../pages/Mood/MoodPageEntry.js';
   //connects this props and state in reducer
 import { connect } from 'react-redux';
 import { setMood } from '../actions/index';
+import { setCities } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 class MoodPage extends React.Component {
@@ -18,6 +19,7 @@ class MoodPage extends React.Component {
 
   onMoodClick(mood) {
     this.props.setMood(mood);
+    this.props.setCities(mood);
     window.location.hash ='#/constraints';
   }
 
@@ -44,7 +46,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({setMood: setMood}, dispatch);
+  return bindActionCreators({setMood: setMood, setCities: setCities}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoodPage);

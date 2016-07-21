@@ -24,14 +24,14 @@ class MoodPageEntry extends React.Component {
 
     }
     return (
-        <div
-          onClick={(this.props.onMoodClick)}
-          className="mood col-xs-3 col-centered">
-          <center>
-            <p>{this.props.moods.mood}</p>
-            <FontAwesome name={icons[this.props.moods.mood]} size='4x'/>
-          </center>
-        </div>
+      <div
+        onClick={(this.props.onMoodClick)}
+        className="mood col-md-3">
+        <center>
+          <p>{this.props.moods.mood}</p>
+          <FontAwesome name={icons[this.props.moods.mood]} size='4x'/>
+        </center>
+      </div>
     )
   }
 }

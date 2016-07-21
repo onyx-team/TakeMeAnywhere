@@ -23,12 +23,13 @@ class MoodPage extends React.Component {
 
   render() {
     return (
-        <div className='moodPage container-fluid'>
+        <div className='blueBackground container-fluid'>
         {this.props.moods.map((mood, i) =>
           <MoodPageEntry
             onMoodClick={() => this.onMoodClick(mood) }
             key={i}
-            moods={mood} />
+            moods={mood}
+            />
         )}
         </div>
     )

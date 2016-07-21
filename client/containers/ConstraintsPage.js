@@ -127,8 +127,7 @@ class ConstraintsPage extends React.Component {
       onChange: this.onChange
     };
     return (
-      <div>
-
+      <div className='blueBackground'>
         <h3>Airport</h3>
         <Autosuggest suggestions={suggestions}
                    onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
@@ -200,7 +199,7 @@ function mapStateToProps(state) {
   return {
     results: state.results,
     moods: state.moods,
-    activeMood: state.activeMood.mood
+    activeMood: state.activeMood
   }
 }
 

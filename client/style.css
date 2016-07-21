@@ -1,11 +1,28 @@
 body {
   background-color: white;
   height: 100%;
+  margin: 0px;
+  padding: 0px;
 }
 
 h2 {
   color: purple;
 
+}
+html {
+  background: url('http://www.free-website-templates.co.uk/wp-content/uploads/2015/06/1382-minimalistic-blue-gradient-wallpaper-wallchan-1440x900.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.moodPage {
+  background: url('http://www.free-website-templates.co.uk/wp-content/uploads/2015/06/1382-minimalistic-blue-gradient-wallpaper-wallchan-1440x900.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 img {
@@ -39,6 +56,18 @@ img {
   font-size: 2em;
 }
 
+.mood {
+  font-family: 'Raleway';
+  font-weight: 100;
+  margin: 10px;
+  padding: 1em;
+  font-size: 20px;
+  border-radius: 10px;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
 .price {
   float: right;
   clear: right;
@@ -57,3 +86,4 @@ img {
   border-radius: 10px;
   margin: 10px 5% 10px 5%;
 }
+

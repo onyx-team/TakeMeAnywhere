@@ -124,8 +124,7 @@ class ConstraintsPage extends React.Component {
       onChange: this.onChange
     };
     return (
-      <div>
-
+      <div className='blueBackground'>
         <h3>Airport</h3>
         <Autosuggest suggestions={suggestions}
                    onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}

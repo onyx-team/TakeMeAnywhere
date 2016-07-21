@@ -1,4 +1,6 @@
 import React from 'react';
+var FontAwesome = require('react-fontawesome');
+
 
 class MoodPageEntry extends React.Component {
   constructor(props) {
@@ -9,19 +11,26 @@ class MoodPageEntry extends React.Component {
     var colors = ['red','blue','green','purple','pink', 'yellow'];
     var opacity = Math.random() + 0.2;
 
-    var moodStyles = {
-      height: 200,
-      background: colors[Math.floor(Math.random() * colors.length)],
-       margin: 10 + 'px',
-      opacity: opacity,
-      cursor: 'pointer'
+    var icons = {
+      party: 'glass',
+      nature: 'tree',
+      adventure: 'binoculars',
+      city: 'building',
+      romantic: 'heart',
+      solitude: 'male',
+      foodie: 'cutlery',
+      historic: 'university',
+      family: 'users'
+
     }
     return (
       <div
         onClick={(this.props.onMoodClick)}
-        style={moodStyles}
-        className="col-xs-3">
-        {this.props.moods.mood}
+        className="mood col-md-3">
+        <center>
+          <p>{this.props.moods.mood}</p>
+          <FontAwesome name={icons[this.props.moods.mood]} size='4x'/>
+        </center>
       </div>
     )
   }

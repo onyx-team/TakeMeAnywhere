@@ -54,12 +54,13 @@ class ResultPage extends React.Component {
   render() {
     console.log("RENDER PROPS", this.props.results);
     return (
-      <div>
+      <div className='row row-centered'>
         {this.props.results.map((result, i) =>
           <ResultPageEntry
             onClick={ () => this.onResultClick(result) }
             key={i}
-            result={result} />
+            result={result}
+            className='col-xs-3 col-centered' />
         )}
       </div>
     )

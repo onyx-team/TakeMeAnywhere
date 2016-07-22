@@ -191,3 +191,6 @@ select {
   margin: 10px 5% 10px 5%;
 }
 
+.dateError {
+  color: red;
+}

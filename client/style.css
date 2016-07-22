@@ -21,6 +21,38 @@ img {
   margin: 10px;
 }
 
+h3 {
+  font-family: 'Raleway';
+  font-weight: 100;
+  font-size: 25px;
+}
+
+input[type=text] {
+  background-color: transparent;
+  border: 1px solid white;
+  width: 100%;
+}
+
+input[type=range] {
+  width: 100%; /* Specific width is required for Firefox. */
+  background: white; /* Otherwise white in Chrome */
+  color: white;
+}
+
+input[type=date] {
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+
+}
+-webkit-calendar-picker-indicator { background: white; }
+-webkit-datetime-edit-text { color: white; }
+-webkit-datetime-edit-month-field { color: white; }
+-webkit-datetime-edit-day-field { color: white; }
+-webkit-datetime-edit-year-field { color: white; }
+
+select {
+  background: transparent;
+}
 .app {
   height: 100%;
   width: 100%;
@@ -34,8 +66,26 @@ img {
   background-size: cover;
 }
 
+.button {
+  width: 20%;
+  border: 1px solid white;
+  font-family: 'Raleway';
+  font-weight: 100;
+  font-size: 20px;
+  background-color: transparent;
+  color: white;
+  margin: 20px auto;
+}
 .clearfix {
   overflow: auto;
+}
+
+.constraint {
+  padding: 1em;
+  font-family: 'Raleway';
+  font-weight: 100;
+  font-size: 20px;
+  color: white;
 }
 
 .container-fluid {
@@ -90,6 +140,7 @@ img {
   border: 1px solid white;
   cursor: pointer;
 }
+
 
 .price {
   float: right;

@@ -124,37 +124,49 @@ class ConstraintsPage extends React.Component {
       onChange: this.onChange
     };
     return (
-      <div className='blueBackground'>
-        <h3>Airport</h3>
-        <Autosuggest suggestions={suggestions}
+      <div className='blueBackground container-fluid'>
+        <div className='row constraint'>
+          <h3>Airport</h3>
+          <Autosuggest suggestions={suggestions}
                    onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
                    getSuggestionValue={getSuggestionValue}
                    renderSuggestion={renderSuggestion}
                    inputProps={inputProps}
                    ref={this.saveInput} />
-        <h3>Price: ${this.state.price}</h3>
-        <input type="range"
-          id="price"
-          style={formStyle}
-          min="100"
-          max="3000"
-          value={this.state.price}
-          onChange={this.changePrice}
-          step="50" />
-        <h3>Departure Date</h3>
+        </div>
+      <div className='row'>
+        <div className='col-xs-3 constraint'>
+          <h3>Price: ${this.state.price}</h3>
+          <input type="range"
+            id="price"
+            style={formStyle}
+            min="100"
+            max="3000"
+            value={this.state.price}
+            onChange={this.changePrice}
+            step="50" />
+        </div>
+        <div className='col-xs-3 constraint'>
+          <h3>Departure Date</h3>
+            <input type="date"
+            className="form-control"
+            style={formStyle}
+            id="depDate"
+            value={this.state.depDate}
+            onChange={this.changeDepDate}/>
+        </div>
+        <div className='col-xs-3 constraint'>
+          <h3>Return Date</h3>
           <input type="date"
-          className="form-control"
-          style={formStyle}
-          id="depDate"
-          value={this.state.depDate}
-          onChange={this.changeDepDate}/>
-        <h3>Return Date</h3>
-        <input type="date"
-          className="form-control"
-          style={formStyle}
-          id="returnDate"
-          value={this.state.returnDate}
-          onChange={this.changeReturnDate} />
+            className="form-control"
+            style={formStyle}
+            id="returnDate"
+            value={this.state.returnDate}
+            onChange={this.changeReturnDate} />
+        </div>
+      </div>
+      <div className='row'>
+      <div className='col-xs-3 constraint'>
         <h3>Adults</h3>
         <select className="form-control"
           id="adults"
@@ -168,6 +180,8 @@ class ConstraintsPage extends React.Component {
           <option>5</option>
           <option>6</option>
         </select>
+      </div>
+      <div className='col-xs-3 constraint'>
         <h3>Children</h3>
         <select className="form-control"
           id="children"
@@ -182,11 +196,15 @@ class ConstraintsPage extends React.Component {
           <option>5</option>
           <option>6</option>
         </select>
-        <br/>
-        <br/>
-        <button className="btn btn-primary"
-        onClick={() => this.onSubmitClick(this.state)}
-        >Submit</button>
+      </div>
+      </div>
+      <div className='row constraints'>
+        <div className='col-xs-12 constraints'>
+          <button className="button"
+          onClick={() => this.onSubmitClick(this.state)}
+          >Submit</button>
+        </div>
+        </div>
       </div>
     )
   }

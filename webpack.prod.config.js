@@ -2,8 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-
-  devtool: 'eval',
+  devtools: 'source-map',
 
   entry: [
     './client/main'
@@ -13,11 +12,21 @@ module.exports = {
     filename: 'index.js',
     publicPath: '/client/'
   },
-  devServer: {
-    inline: true,
-    contentBase: './client',
-    port: 3000
-  },
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      minimize: true,
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
+  ],
+
   module: {
     loaders: [
       {

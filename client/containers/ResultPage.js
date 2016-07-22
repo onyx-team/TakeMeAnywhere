@@ -9,6 +9,7 @@ import resultSelector from '../actions/index';
 import moodSelector from '../actions/index';
 import { setFlights } from '../actions/index';
 import axios from 'axios';
+var Loader = require('react-loader');
 
 class ResultPage extends React.Component {
   constructor(props) {
@@ -17,8 +18,12 @@ class ResultPage extends React.Component {
     this.searchFlights = this.searchFlights.bind(this);
   }
 
+
   componentWillMount() {
     var context = this;
+    this.setState({
+      loaded: false
+    })
     this.searchFlights(this.props.constraints[0], function(flights) {
       console.log("returned data", flights);
       context.props.setFlights(flights);
@@ -46,15 +51,42 @@ class ResultPage extends React.Component {
       })
   }
 
+  componentWillReceiveProps(){
+    this.setState({
+      loaded: true
+    })
+  }
 
   onResultClick() {
     console.log("Omg you clicked", arguments);
   }
 
+
   render() {
     console.log("RENDER PROPS", this.props.results);
+    var options = {
+    lines: 17,
+    length: 28,
+    width: 2,
+    radius: 36,
+    corners: 1,
+    opacity: .05,
+    rotate: 0,
+    direction: 1,
+    color: 'white',
+    speed: 1,
+    trail: 100,
+    shadow: false,
+    hwaccel: false,
+    zIndex: 2e9,
+    top: '50%',
+    left: '50%',
+    scale: 1.00
+    };
+
     return (
       <div className='row row-centered'>
+      <Loader loaded={this.state.loaded} options={options} className="spinner" />
         {this.props.results.map((result, i) =>
           <ResultPageEntry
             onClick={ () => this.onResultClick(result) }

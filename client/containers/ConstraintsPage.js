@@ -114,6 +114,7 @@ class ConstraintsPage extends React.Component {
   }
 
   render() {
+
     var formStyle = {
       width: 175
     }
@@ -214,8 +215,7 @@ function mapStateToProps(state) {
   return {
     results: state.results,
     moods: state.moods,
-    activeMood: state.activeMood,
-    cities: state.cities
+    activeMood: state.activeMood
   }
 }
 

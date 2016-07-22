@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   moods: MoodReducer,
   constraints: ConstraintReducer,
   activeMood : ActiveMoodReducer,
-  results: ResultReducer
+  results: ResultReducer,
   cities: CityReducer
 });
 

@@ -1,112 +1,217 @@
 const moodCities = {
-  party:[{
-          city: 'Las Vegas, Nevada',
-          airport:'LAS'
-        },{
-         city: 'Miami, Florida',
-         airport: 'MIA'
-        },{
-          city: 'Macau, China',
-          airport: 'MFM'
-        },{
-         city: 'Bangkok Thailand',
+ party:[{
+         city: 'Las Vegas, Nevada',
+         cityLink: 'http://www.vegas.com/attractions/',
+         airport:'LAS'
+       },{
+        city: 'Miami, Florida',
+        cityLink: 'http://www.miamiandbeaches.com/',
+        airport: 'MIA'
+       },{
+         city: 'Macau, China',
+         cityLink: 'https://www.tripadvisor.com/Attractions-g664891-Activities-Macau.html',
+         airport: 'MFM'
+       },{
+        city: 'Bangkok, Thailand',
+        cityLink: 'http://www.bangkok.com/most-popular-historical/',
+        airport: 'BKK'
+       },{
+         city:'New York, New York',
+         cityLink: 'http://www.nycgo.com/things-to-do/attractions',
+         airport:'NYC'
+       }],
+ adventure:[{
+         city: 'San Juan, Puerto Rico',
+         cityLink: 'https://www.virtualtourist.com/travel/Caribbean_and_Central_America/Puerto_Rico/San_Juan_Municipio/San_Juan-1645724/Things_To_Do-San_Juan-TG-C-1.html',
+         airport: 'SJU'
+       },{
+        city: 'Grand Canyon, Arizona',
+        cityLink: 'http://grandcanyon.com/',
+        airport:'PHX'
+       },{
+         city:'Bangkok, Thailand',
+         cityLink: 'http://www.bangkok.com/most-popular-historical/',
          airport: 'BKK'
-        },{
-          city:'New York, New York',
-          airport:'NYC'
-        }],
-  adventure:[{
-          city: 'San Juan, Puerto Rico',
-          airport: 'SJU'
-        },{
-         city: 'Grand Canyon, Arizona',
-         airport:'PHX'
-        },{
-          city:'Bangkok, Thailand',
-          airport: 'BKK'
-        },{
-         city:'Machu Picchu, Peru',
-         airport: 'CUZ'
-        },{
-          city: 'Marrakech, Morocco',
-          airport: 'RAK'
-        }],
-  nature:[{
-          city: 'Yellowstone National Park',
-          airport: 'JAC'
-        },{
-         city: 'Grand Canyon, Airzona',
-         airport: 'PHX'
-        },{
-          city: 'Maui, Hawaii',
-          airport: 'OGG'
-        },{
-         city: 'Lake Tahoe, Nevada',
-         airport: 'RNO'
-        },{
-          city: 'Yosemite, California',
-          airport: 'MCE'
-        }],
-  family: [{
-        city: 'San Diego, California',
-        airport: 'SAN'
+       },{
+        city:'Machu Picchu, Peru',
+        cityLink: 'https://www.virtualtourist.com/travel/South_America/Peru/Departamento_de_Cusco/Machu_Picchu-1604535/Things_To_Do-Machu_Picchu-TG-C-1.html',
+        airport: 'CUZ'
+       },{
+         city: 'Marrakech, Morocco',
+         cityLink: 'http://www.planetware.com/tourist-attractions-/marrakesh-marrakech-mar-mar-mar.htm',
+         airport: 'RAK'
+       }],
+ nature:[{
+         city: 'Yellowstone National Park, Wyoming',
+         cityLink: 'http://yellowstone.net/intro/top-10/',
+         airport: 'JAC'
+       },{
+        city: 'Grand Canyon, Arizona',
+        cityLink: 'http://grandcanyon.com/',
+        airport: 'PHX'
+       },{
+         city: 'Maui, Hawaii',
+         cityLink: 'http://www.gohawaii.com/maui/',
+         airport: 'OGG'
+       },{
+        city: 'Lake Tahoe, Nevada',
+        cityLink: 'http://www.visitinglaketahoe.com/',
+        airport: 'RNO'
+       },{
+         city: 'Yosemite, California',
+         cityLink: 'http://www.travelyosemite.com/',
+         airport: 'MCE'
+       }],
+ family: [{
+       city: 'San Diego, California',
+       cityLink: 'http://www.sandiego.com/attractions',
+       airport: 'SAN'
+       },
+       {
+       city: 'Myrtle Beach, South Carolina',
+       cityLink: 'http://www.visitmyrtlebeach.com/things-to-do/attractions/',
+       airport: 'MYR'
         },
-        {
-        city: 'Myrtle Beach, South Carolina',
-        airport: 'MYR'
-         },
-        {
-        city: 'Branson, Missouri',
-        airport: 'BKG'}
-        ,
-        {
-        city: 'Virginia Beach, Virginia',
-        airport: 'ORF'
-        },
-        {
-        city: 'Nashville Tennesse',
-        airport: 'BNA'
-        }],
-  foodie: [{
-        city: 'Houston Texas',
-        airport: 'IAH'
-        },
-        {
-        city: 'Providence, Rhode Island',
-        airport: 'PVD'
-        },
-        {
-        city: 'Kansas City, Kansas',
-        airport: 'MCI'
-        },
-        {
-        city: 'Atlanta, Georgia',
-        airport: 'ATL'
-        },
-        {
-        city: 'Minneapolis, Minnesota',
-        airport: 'MSP'
-        }],
-  historic: [{
-        city: 'Montreal, Canada',
-        airport: 'YUL'
-        },
-        {
-        city: 'New Orleans, Louisiana',
-        airport: 'MSY'
-        },
-        {
-        city: 'San Antonio, Texas',
-        airport: 'SAT'
-        },
-        {
-        city: 'Savannah, Georgia',
-        airport: 'ATL'
-        },
-        {
-        city: 'Philadelphia, Pennsylvania',
-        airport: 'PHL'
-        }]
+       {
+       city: 'Branson, Missouri',
+       cityLink: 'http://www.branson.com/attractions',
+       airport: 'BKG'}
+       ,
+       {
+       city: 'Virginia Beach, Virginia',
+       cityLink: 'http://www.visitvirginiabeach.com/visitors/things-to-do/',
+       airport: 'ORF'
+       },
+       {
+       city: 'Nashville, Tennesse',
+       cityLink: 'http://www.visitmusiccity.com/visitors/thingstodo',
+       airport: 'BNA'
+       }],
+ foodie: [{
+       city: 'Houston, Texas',
+       cityLink: 'https://www.tripadvisor.com/Attractions-g56003-Activities-Houston_Texas.html',
+       airport: 'IAH'
+       },
+       {
+       city: 'Providence, Rhode Island',
+       cityLink: 'http://www.goprovidence.com/things-to-do/',
+       airport: 'PVD'
+       },
+       {
+       city: 'Kansas City, Kansas',
+       cityLink: 'https://www.visitkc.com/visitors/things-do/attractions',
+       airport: 'MCI'
+       },
+       {
+       city: 'Atlanta, Georgia',
+       cityLink: 'http://www.atlanta.net/50fun/',
+       airport: 'ATL'
+       },
+       {
+       city: 'Minneapolis, Minnesota',
+       cityLink: 'http://www.minneapolis.org/',
+       airport: 'MSP'
+       }],
+ historic: [{
+       city: 'Montreal, Canada',
+       cityLink: 'http://www.travelchannel.com/destinations/canada/quebec/montreal/photos/montreals-must-see-attractions',
+       airport: 'YUL'
+       },
+       {
+       city: 'New Orleans, Louisiana',
+       cityLink: 'http://www.neworleansonline.com/neworleans/attractions/',
+       airport: 'MSY'
+       },
+       {
+       city: 'San Antonio, Texas',
+       cityLink: 'http://visitsanantonio.com/Browse-Book/Attractions',
+       airport: 'SAT'
+       },
+       {
+       city: 'Savannah, Georgia',
+       cityLink: 'http://travel.usnews.com/Savannah_GA/Things_To_Do/',
+       airport: 'ATL'
+       },
+       {
+       city: 'Philadelphia, Pennsylvania',
+       cityLink: 'http://www.visitphilly.com/articles/philadelphia/top-10-most-visited-attractions-in-philadelphia/',
+       airport: 'PHL'
+       }],
+ cities: [{
+       city: 'New York City, New York',
+       cityLink: 'http://www.nyctourist.com/topten_alltime.htm',
+       airport: 'JFK'
+       },
+       {
+       city: 'Chicago, Illinois',
+       cityLink: 'http://www.chicagotraveler.com/attractions.htm',
+       airport: 'ORD'
+       },
+       {
+       city: 'Toronto, Canada',
+       cityLink: 'https://www.tripadvisor.com/Attractions-g155019-Activities-Toronto_Ontario.html',
+       airport: 'YYZ'
+       },
+       {
+       city: 'Austin, Texas',
+       cityLink: 'http://www.austintexas.org/',
+       airport: 'AUS'
+       },
+       {
+       city: 'Boston, Massachusetts',
+       cityLink: 'http://www.cityofboston.gov/visitors/',
+       airport: 'BOS'
+       }],
+ solitude: [{
+       city: 'Bozeman, Montana',
+       cityLink: 'http://www.bozemannet.com/attractions/',
+       airport: 'BZN'
+       },
+       {
+       city: 'Jackson Hole, Wyoming',
+       cityLink: 'http://www.jacksonhole.com/',
+       airport: 'JAC'
+       },
+       {
+       city: 'Asheville, North Carolina' ,
+       cityLink: 'https://www.exploreasheville.com/',
+       airport: 'AVL'
+       },
+       {
+       city: 'Salt Lake City, Utah',
+       cityLink: 'http://www.visitsaltlake.com/',
+       airport: 'SLC'
+       },
+       {
+       city: 'Santa Fe, New Mexico',
+       cityLink: 'http://santafe.org/',
+       airport: 'SAF'
+       }],
+ romantic: [{
+       city: 'Charleston, South Carolina',
+       cityLink: 'http://www.charlestoncvb.com/',
+       airport: 'CHS'
+       },
+       {
+       city: 'Napa Valley, California',
+       cityLink: 'http://www.napavalley.com/thingstodo/',
+       airport: 'OAK'
+       },
+       {
+       city: 'Key West, Florida',
+       cityLink: 'http://keywestattractions.org/',
+       airport: 'EYW'
+       },
+       {
+       city: 'Cape Cod, Massachusetts',
+       cityLink: 'http://www.capecodchamber.org/',
+       airport: 'BOS'
+       },
+       {
+       city: 'Savannah, Georgia',
+       cityLink: 'https://www.tripadvisor.com/Attractions-g60814-Activities-Savannah_Georgia.html',
+       airport: 'SAV'
+       }]
 }
 
 export default moodCities;

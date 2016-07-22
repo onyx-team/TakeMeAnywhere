@@ -10,7 +10,7 @@ class Header extends React.Component {
 
     return (
       <div className='logo col-md-12'>
-        <img src='../../takemeanywhere2.svg' className='logoImg' />
+        <img src='../takeMeAnywhere2.svg' className='logoImg' />
         <h1 className='logoText'>Take Me Anywhere</h1>
       </div>
     )

@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines" : {
+    "node": "4.1.1"
+  },
   "scripts": {
-    "start": "npm run build & npm run dev",
-    "build": "webpack",
-    "dev": "nodemon server/server.js",
-    "local": "webpack-dev-server"
+    "build": "webpack --config ./webpack.prod.config.js --progress --colors",
+    "start": "node server/server.js",
+    "dev": "webpack-dev-server",
+    "postinstall": "bower install"
   },
   "keywords": [],
   "author": "",
@@ -28,7 +31,6 @@
     "mongodb": "^2.2.1",
     "mongoose": "^4.5.4",
     "morgan": "^1.7.0",
-    "q": "^1.4.1",
     "react": "^15.2.1",
     "react-autosuggest": "^3.8.0",
     "react-dom": "^15.2.1",

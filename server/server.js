@@ -8,20 +8,13 @@ var app = express();
 require('./config/middleware')(app, express);
 require('./config/routes')(app, express);
 
-// var uristring =
-//     process.env.MONGO_URI ||
-//     'mongodb://localhost/takeMeAnywhere';
-
-// mongoose.connect(uristring, function (err, res) {
-//       if (err) {
-//       console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-//       } else {
-//       console.log ('Succeeded connected to: ' + uristring);
-//       }
-//     });
-
 var port = process.env.PORT || 3000;
 
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack');
+  const config = require('../webpack.config.js');
+  const compiler = webpack(config);
+}
 
 app.listen(port, function() {
   console.log('connected suckas!')

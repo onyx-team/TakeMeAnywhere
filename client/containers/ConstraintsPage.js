@@ -45,13 +45,14 @@ class ConstraintsPage extends React.Component {
       price: 400,
       depDate: '',
       returnDate: '',
-      adults: 2,
+      adults: 1,
       children: 0,
+      cityError: '',
       depDateError: '',
-      returnDateError: ''
+      returnDateError: '',
+      submitError: ''
 
     }
-    this.changeCity = this.changeCity.bind(this);
     this.changePrice = this.changePrice.bind(this);
     this.changeDepDate = this.changeDepDate.bind(this);
     this.changeReturnDate = this.changeReturnDate.bind(this);
@@ -64,10 +65,6 @@ class ConstraintsPage extends React.Component {
     this.makeDate = this.makeDate.bind(this);
   }
 
-  changeCity(event) {
-    this.setState({city: event.target.value });
-  }
-
   changePrice(event) {
     this.setState({price: event.target.value });
   }
@@ -78,7 +75,7 @@ class ConstraintsPage extends React.Component {
     var currentDate = new Date();
 
     if (depDate < currentDate) {
-      this.state.depDateError = 'Please a future date for your departure'
+      this.state.depDateError = 'Please select a future date for your departure'
     } else if (returnDate < depDate) {
         this.state.returnDateError = 'Please make return date later than departure date'
         this.state.depDateError = '';
@@ -120,6 +117,8 @@ class ConstraintsPage extends React.Component {
     this.input.focus();
   }
 
+
+
   onChange(event, { newValue, method }) {
     this.setState({
       value: newValue
@@ -142,10 +141,24 @@ class ConstraintsPage extends React.Component {
 
 
   onSubmitClick() {
-    var st = arguments[0];
-    //set constraints state
-    this.props.setConstraints([st]);
-    window.location.hash = '#/result'
+    if (this.state.value === "") {
+      this.setState({submitError: 'Please enter your Departure City'})
+    }
+    else if (this.state.value.length !== 3) {
+      this.setState({submitError: 'Invalid Airport Code'})
+    }
+    else if(this.state.depDate === "") {
+      this.setState({submitError: 'Please enter your Departure Date'})
+    }
+    else if(this.state.returnDate === "") {
+      this.setState({submitError: 'Please enter your Return Date'})
+    }
+    else {
+      var st = arguments[0];
+      //set constraints state
+      this.props.setConstraints([st]);
+      window.location.hash = '#/result'
+    }
   }
 
 
@@ -157,19 +170,24 @@ class ConstraintsPage extends React.Component {
     }
     const { value, suggestions } = this.state;
     const inputProps = {
-      placeholder: "Nearest Airport",
+      placeholder: "Please enter 3 letter Airport code or search by city name",
       value,
       onChange: this.onChange
     };
     return (
-      <div className='blueBackground'>
-        <h3>Airport</h3>
-        <Autosuggest suggestions={suggestions}
+           <div className='blueBackground container-fluid'>
+        <div className='row constraint'>
+          <h3>Your Airport</h3>
+          <Autosuggest suggestions={suggestions}
                    onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
                    getSuggestionValue={getSuggestionValue}
                    renderSuggestion={renderSuggestion}
                    inputProps={inputProps}
                    ref={this.saveInput} />
+          <div className="error">{this.state.cityError}</div>
+        </div>
+      <div className='row'>
+        <div className='col-xs-3 constraint'>
           <h3>Price: ${this.state.price}</h3>
           <input type="range"
             id="price"
@@ -179,15 +197,18 @@ class ConstraintsPage extends React.Component {
             value={this.state.price}
             onChange={this.changePrice}
             step="50" />
+        </div>
+        <div className='col-xs-3 constraint'>
           <h3>Departure Date</h3>
             <input type="date"
             className="form-control"
             style={formStyle}
             id="depDate"
             value={this.state.depDate}
-            onChange={this.changeDepDate}
-            required/>
-            <div className="dateError">{this.state.depDateError}</div>
+            onChange={this.changeDepDate}/>
+            <div className="error">{this.state.depDateError}</div>
+        </div>
+        <div className='col-xs-3 constraint'>
           <h3>Return Date</h3>
           <input type="date"
             className="form-control"
@@ -195,39 +216,50 @@ class ConstraintsPage extends React.Component {
             id="returnDate"
             value={this.state.returnDate}
             onChange={this.changeReturnDate} />
-            <div className="dateError">{this.state.returnDateError}</div>
-          <h3>Adults</h3>
-          <select className="form-control"
-            id="adults"
-            style={formStyle}
-            value={this.state.adults}
-            onChange={this.changeAdults}>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-          </select>
-          <h3>Children</h3>
-          <select className="form-control"
-            id="children"
-            style={formStyle}
-            value={this.state.children}
-            onChange={this.changeChildren}>
-            <option>0</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-          </select>
-          <br/>
-          <br/>
-          <button className="btn btn-primary"
+            <div className="error">{this.state.returnDateError}</div>
+        </div>
+      </div>
+      <div className='row'>
+      <div className='col-xs-3 constraint'>
+        <h3>Adults</h3>
+        <select className="form-control"
+          id="adults"
+          style={formStyle}
+          value={this.state.adults}
+          onChange={this.changeAdults}>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+      <div className='col-xs-3 constraint'>
+        <h3>Children</h3>
+        <select className="form-control"
+          id="children"
+          style={formStyle}
+          value={this.state.children}
+          onChange={this.changeChildren}>
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+      </div>
+      <div className='row constraints'>
+        <div className='col-xs-12 constraints'>
+          <button className="button"
           onClick={() => this.onSubmitClick(this.state)}
           >Submit</button>
+          <div className="error">{this.state.submitError}</div>
+        </div>
+        </div>
       </div>
     )
   }

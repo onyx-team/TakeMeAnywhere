@@ -57,11 +57,13 @@ class ResultPage extends React.Component {
       })
   }
 
+
   componentWillReceiveProps(){
     this.setState({
       loaded: true
-    })
+    });
   }
+
 
   onResultClick() {
     console.log("Omg you clicked", arguments);

@@ -1,7 +1,7 @@
 var request = require('request');
 var apikey = require('../key').api_key;
 
-exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, cb ){
+exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cb ){
 
   console.log("ARGS", arguments);
   console.log("API_KEY", apikey);
@@ -69,6 +69,8 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
               }
             }
 
+            storage.cityLink = cityLink;
+            storage.city = city;
             results.push(storage);
           }
 

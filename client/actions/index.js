@@ -1,9 +1,21 @@
+import cities from '../utils/moodcities';
 // Constant Actions
 
 export const FETCH_RESULTS= 'FETCH_RESULTS';
 export const SET_CONSTRAINTS = 'SET_CONSTRAINTS';
 export const SET_MOOD = 'SET_MOOD';
 export const SET_FLIGHTS = 'SET_FLIGHTS';
+export const FETCH_MOOD = 'FETCH_MOOD';
+export const SET_CITIES = 'SET_CITIES';
+
+
+export function setCities(mood){
+  var city = cities[mood.mood];
+  return {
+    type: SET_CITIES,
+    payload: city
+  }
+}
 
 export function setMood(mood) {
   return {

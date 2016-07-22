@@ -8,6 +8,7 @@ var app = express();
 require('./config/middleware')(app, express);
 require('./config/routes')(app, express);
 
+
 var port = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV !== 'production') {

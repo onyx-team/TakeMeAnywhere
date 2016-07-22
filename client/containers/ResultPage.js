@@ -23,23 +23,29 @@ class ResultPage extends React.Component {
     var context = this;
     this.setState({
       loaded: false
-    })
-    this.searchFlights(this.props.constraints[0], function(flights) {
-      console.log("returned data", flights);
+    });
+
+    this.props.cities.forEach(function(cityObj){
+      context.searchFlights(context.props.constraints[0], cityObj,  function(flights) {
+        console.log("returned data", flights);
+
       context.props.setFlights(flights);
     });
+    });
+
   };
 
-  searchFlights(options, callback) {
+  searchFlights(options, cityObj, callback) {
 
     const envelope = {
       origin: options.value,
-      dest: 'JFK',
+      dest: cityObj.airport,
       depart: options.depDate,
       returned: options.returnDate,
       priceLimit: parseInt(options.price),
       adults: parseInt(options.adults),
-      kids: parseInt(options.children)
+      kids: parseInt(options.children),
+      city: cityObj.city
     };
 
     axios.post('/api/flights', envelope)
@@ -104,7 +110,8 @@ function mapStateToProps(state) {
     results: state.results,
     moods: state.moods,
     activeMood: state.activeMood,
-    constraints: state.constraints
+    constraints: state.constraints,
+    cities: state.cities
   }
 }
 

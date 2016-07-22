@@ -69,6 +69,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
               }
             }
 
+            storage.cityLink = cityLink;
             storage.city = city;
             results.push(storage);
           }

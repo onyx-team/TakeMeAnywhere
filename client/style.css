@@ -21,6 +21,13 @@ img {
   margin: 10px;
 }
 
+h2 {
+  font-family: 'Raleway';
+  font-weight: 400;
+  font-size: 30px;
+  padding-left: 1em;
+}
+
 h3 {
   font-family: 'Raleway';
   font-weight: 100;
@@ -42,17 +49,37 @@ input[type=range] {
 input[type=date] {
   width: 100%; /* Specific width is required for Firefox. */
   background: transparent; /* Otherwise white in Chrome */
-
 }
--webkit-calendar-picker-indicator { background: white; }
--webkit-datetime-edit-text { color: white; }
--webkit-datetime-edit-month-field { color: white; }
--webkit-datetime-edit-day-field { color: white; }
--webkit-datetime-edit-year-field { color: white; }
+::-webkit-calendar-picker-indicator { background: white; }
+::-webkit-datetime-edit-text { color: white; }
+::-webkit-datetime-edit-month-field { color: white; }
+::-webkit-datetime-edit-day-field { color: white; }
+::-webkit-datetime-edit-year-field { color: white; }
 
 select {
   background: transparent;
 }
+
+.resultBtn {
+  float: right;
+  clear: right;
+  margin: .5em;
+  padding: 2em;
+  font-family: 'Raleway';
+  font-weight: 100;
+  background-color: #324460;
+  color: white;
+  font-size: 1em;
+  width: 100px;
+  height: 75px;
+  text-align: center;
+}
+
+.agencyImg {
+  max-height: 50px;
+  float: left;
+}
+
 .app {
   height: 100%;
   width: 100%;
@@ -100,7 +127,11 @@ select {
 }
 
 .destImg {
-  margin-left: 0;
+  float: left;
+  border-radius: 0px;
+  height: 75px;
+  float: left;
+  clear: both;
 }
 
 .destination {
@@ -149,14 +180,13 @@ select {
   margin-right: 1em;
   text-align: right;
   display: inline-block;
-  padding: 1em;
+  padding: .5em;
 }
 
 .result {
   float: left;
-  width: 90%;
+  width: 70%;
   background-color: whitesmoke;
-  margin: 10px;
   border-radius: 10px;
   margin: 10px 5% 10px 5%;
 }

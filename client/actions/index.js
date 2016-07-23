@@ -11,6 +11,7 @@ export const SET_CITIES = 'SET_CITIES';
 
 export function setCities(mood){
   var city = cities[mood.mood];
+  console.log("Mood in setCities", mood.mood);
   return {
     type: SET_CITIES,
     payload: city

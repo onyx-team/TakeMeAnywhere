@@ -5,7 +5,6 @@ import ConstraintReducer from './reducer_constraints';
 import ActiveMoodReducer from './reducer_active_mood';
 import CityReducer from './reducer_moodCities'
 
-
 const rootReducer = combineReducers({
   moods: MoodReducer,
   constraints: ConstraintReducer,

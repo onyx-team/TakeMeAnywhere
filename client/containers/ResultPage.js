@@ -61,9 +61,9 @@ class ResultPage extends React.Component {
     this.setState({
       loaded: true
     });
-    })
-
   }
+
+}
 
 
   render() {
@@ -72,7 +72,7 @@ class ResultPage extends React.Component {
 
     if(this.props.results.length > 0 && this.state.loaded){
         resultsExist = true;
-      }
+    }
 
     console.log("RENDER PROPS", this.props.results);
     var options = {
@@ -112,7 +112,6 @@ class ResultPage extends React.Component {
       </div>
     )
   }
-}
 //moodData will now be available as props in MoodPage class
 function mapStateToProps(state) {
   return {

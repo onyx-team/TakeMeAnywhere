@@ -26,9 +26,6 @@ class ResultPageEntry extends React.Component {
         <a className='btn resultBtn' target= '_blank' href={this.props.result.url}>Purchase</a>
         <a className='btn resultBtn' target= '_blank' href={this.props.result.cityLink}>Explore</a>
         </div>
-        <p className='price'>${price}</p>
-        <a className='btn btn-default' target= '_blank' href={this.props.result.url}>TakeMeAway!</a>
-        <a className='btn btn-default' target= '_blank' href={this.props.result.cityLink}>Check out attractions!</a>
       </div>
     )
   }

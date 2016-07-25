@@ -94,7 +94,7 @@ class ResultPage extends React.Component {
     return (
       <div className="container">
         <div className='row row-centered'>
-          <a className="btn btn-danger row row-centered">New Search</a>
+          <a href="/" className="btn btn-danger row row-centered">New Search</a>
           <Loader loaded={this.state.loaded} options={options} className="spinner" />
 
           <NoResult exists = {resultsExist}/>

@@ -61,6 +61,8 @@ class ResultPage extends React.Component {
     this.setState({
       loaded: true
     });
+    })
+
   }
 
 

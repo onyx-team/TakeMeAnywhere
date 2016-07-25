@@ -70,9 +70,9 @@ class ConstraintsPage extends React.Component {
   }
 
   changeDepDate(event) {
-    var depDate = this.makeDate(event.target.value);
-    var returnDate = this.makeDate(this.state.returnDate);
-    var currentDate = new Date();
+    let depDate = this.makeDate(event.target.value);
+    let returnDate = this.makeDate(this.state.returnDate);
+    let currentDate = new Date();
 
     if (depDate < currentDate) {
       this.state.depDateError = 'Please select a future date for your departure'
@@ -87,8 +87,8 @@ class ConstraintsPage extends React.Component {
   }
 
   changeReturnDate(event) {
-    var depDate = this.makeDate(this.state.depDate);
-    var returnDate = this.makeDate(event.target.value);
+    let depDate = this.makeDate(this.state.depDate);
+    let returnDate = this.makeDate(event.target.value);
 
     if (returnDate < depDate) {
       this.state.returnDateError = 'Please make return date later than departure date'
@@ -99,10 +99,10 @@ class ConstraintsPage extends React.Component {
   }
 
   makeDate(date) {
-    var dateArr = date.split('-')
-    var year = dateArr[0];
-    var month = dateArr[1];
-    var day = dateArr[2];
+    let dateArr = date.split('-')
+    let year = dateArr[0];
+    let month = dateArr[1];
+    let day = dateArr[2];
     return new Date(year, month - 1, day);
   }
 
@@ -154,7 +154,7 @@ class ConstraintsPage extends React.Component {
       this.setState({submitError: 'Please enter your Return Date'})
     }
     else {
-      var st = arguments[0];
+      let st = arguments[0];
       //set constraints state
       this.props.setConstraints([st]);
       window.location.hash = '#/result'
@@ -165,7 +165,7 @@ class ConstraintsPage extends React.Component {
 
   render() {
 
-    var formStyle = {
+    const formStyle = {
       width: 175
     }
     const { value, suggestions } = this.state;

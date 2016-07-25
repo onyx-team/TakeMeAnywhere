@@ -1,15 +1,14 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var axios = require('axios');
-var cors = require('cors');
+const express = require('express');
+const mongoose = require('mongoose');
+const axios = require('axios');
+const cors = require('cors');
 
-var app = express();
+const app = express();
 // app.use(cors());
 require('./config/middleware')(app, express);
 require('./config/routes')(app, express);
 
-
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack');

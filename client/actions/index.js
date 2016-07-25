@@ -1,5 +1,4 @@
 import cities from '../utils/moodcities';
-// Constant Actions
 
 export const FETCH_RESULTS= 'FETCH_RESULTS';
 export const SET_CONSTRAINTS = 'SET_CONSTRAINTS';

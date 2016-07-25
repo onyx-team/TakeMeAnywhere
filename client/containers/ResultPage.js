@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { setMood } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import resultSelector from '../actions/index';
-// import session from '..actions/requestHandler';
 import moodSelector from '../actions/index';
 import { setFlights } from '../actions/index';
 import axios from 'axios';

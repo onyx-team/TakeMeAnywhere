@@ -1,6 +1,5 @@
 import React from 'react';
-var FontAwesome = require('react-fontawesome');
-
+const FontAwesome = require('react-fontawesome');
 
 class MoodPageEntry extends React.Component {
   constructor(props) {

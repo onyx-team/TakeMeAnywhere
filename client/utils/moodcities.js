@@ -137,7 +137,7 @@ const moodCities = {
        cityLink: 'http://www.visitphilly.com/articles/philadelphia/top-10-most-visited-attractions-in-philadelphia/',
        airport: 'PHL'
        }],
- cities: [{
+ city: [{
        city: 'New York City, New York',
        cityLink: 'http://www.nyctourist.com/topten_alltime.htm',
        airport: 'JFK'

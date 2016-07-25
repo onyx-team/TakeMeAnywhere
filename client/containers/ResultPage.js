@@ -9,6 +9,7 @@ import resultSelector from '../actions/index';
 import moodSelector from '../actions/index';
 import { setFlights } from '../actions/index';
 import axios from 'axios';
+import NoResult from '../pages/Result/NoResults';
 var Loader = require('react-loader');
 
 class ResultPage extends React.Component {
@@ -45,7 +46,8 @@ class ResultPage extends React.Component {
       priceLimit: parseInt(options.price),
       adults: parseInt(options.adults),
       kids: parseInt(options.children),
-      city: cityObj.city
+      city: cityObj.city,
+      cityLink: cityObj.cityLink
     };
 
     axios.post('/api/flights', envelope)
@@ -57,18 +59,22 @@ class ResultPage extends React.Component {
       })
   }
 
+
   componentWillReceiveProps(){
     this.setState({
       loaded: true
-    })
-  }
-
-  onResultClick() {
-    console.log("Omg you clicked", arguments);
+    });
   }
 
 
   render() {
+    var resultsExist = false;
+
+
+    if(this.props.results.length > 0 && this.state.loaded){
+        resultsExist = true;
+      }
+
     console.log("RENDER PROPS", this.props.results);
     var options = {
     lines: 17,
@@ -92,8 +98,13 @@ class ResultPage extends React.Component {
 
     return (
       <div className='row row-centered'>
-      <Loader loaded={this.state.loaded} options={options} className="spinner" />
-        {this.props.results.map((result, i) =>
+        <Loader loaded={this.state.loaded} options={options} className="spinner" />
+
+        <NoResult exists = {resultsExist}/>
+
+        {this.props.results.sort(function(a,b){
+          return a.price - b.price;
+        }).map((result, i) =>
           <ResultPageEntry
             onClick={ () => this.onResultClick(result) }
             key={i}

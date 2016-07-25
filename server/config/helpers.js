@@ -1,7 +1,7 @@
 var request = require('request');
 var apikey = process.env.API_KEY || require('../key').api_key;
 
-exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cb ){
+exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb ){
 
   console.log("ARGS", arguments);
   console.log("API_KEY", apikey);
@@ -27,7 +27,8 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
       //filters from body and returns 5 lowest prices
       request.get(res.headers.location+'?apiKey='+apikey+'&pageindex=0&pagesize=5&sortorder=asc&sorttype=price' ,function(err, res, body){
 
-      body = JSON.parse(body);
+          body = JSON.parse(body);
+
 
        var agents = body.Agents;
        var carriers = body.Carriers;
@@ -69,6 +70,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
               }
             }
 
+            storage.cityLink = cityLink;
             storage.city = city;
             results.push(storage);
           }

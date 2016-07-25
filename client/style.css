@@ -69,19 +69,21 @@ select {
   background: transparent;
 }
 
-.resultBtn {
-  float: right;
-  clear: right;
-  margin: .5em;
-  padding: 2em;
-  font-family: 'Raleway';
-  font-weight: 100;
-  background-color: #324460;
-  color: white;
-  font-size: 1em;
-  width: 100px;
-  height: 75px;
+.about {
   text-align: center;
+  font-family: 'Raleway';
+  font-size: 20px;
+  font-weight: 100;
+  color: white;
+}
+
+.aboutPic {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.aboutDescription {
+  float: left;
 }
 
 .agencyImg {
@@ -181,7 +183,6 @@ select {
   cursor: pointer;
 }
 
-
 .price {
   float: right;
   clear: right;
@@ -198,6 +199,21 @@ select {
   background-color: whitesmoke;
   border-radius: 10px;
   margin: 10px 5% 10px 5%;
+}
+
+.resultBtn {
+  float: right;
+  clear: right;
+  margin: .5em;
+  padding: 2em;
+  font-family: 'Raleway';
+  font-weight: 100;
+  background-color: #324460;
+  color: white;
+  font-size: 1em;
+  width: 100px;
+  height: 75px;
+  text-align: center;
 }
 
 .error {

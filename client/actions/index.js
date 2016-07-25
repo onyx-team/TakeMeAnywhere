@@ -11,7 +11,6 @@ export const SET_CITIES = 'SET_CITIES';
 
 export function setCities(mood){
   var city = cities[mood.mood];
-  console.log("Mood in setCities", mood.mood);
   return {
     type: SET_CITIES,
     payload: city
@@ -33,7 +32,6 @@ export function resultSelector(result) {
 }
 
 export function setConstraints(constraints) {
-  console.log("Contraints Obj", constraints);
   return {
     type: SET_CONSTRAINTS,
     payload: constraints
@@ -42,7 +40,6 @@ export function setConstraints(constraints) {
 
 //flights here should be the result of the get request
 export function setFlights(flights) {
-  console.log("PAYLOAD", flights);
   return {
     type: SET_FLIGHTS,
     payload: flights.data

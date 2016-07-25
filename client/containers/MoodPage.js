@@ -13,10 +13,6 @@ class MoodPage extends React.Component {
     this.onMoodClick = this.onMoodClick.bind(this);
   }
 
-  componentDidMount() {
-    console.log("IN MOOD", this.props);
-  }
-
   onMoodClick(mood) {
     this.props.setMood(mood);
     this.props.setCities(mood);

@@ -26,7 +26,6 @@ class ResultPage extends React.Component {
 
     this.props.cities.forEach(function(cityObj){
       context.searchFlights(context.props.constraints[0], cityObj,  function(flights) {
-        console.log("returned data", flights);
         context.props.setFlights(flights);
       });
     });

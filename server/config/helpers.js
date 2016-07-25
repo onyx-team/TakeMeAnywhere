@@ -3,8 +3,6 @@ var apikey = process.env.API_KEY || require('../key').api_key;
 
 exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb ){
 
-  console.log("ARGS", arguments);
-  console.log("API_KEY", apikey);
   if(origin) origin+='-iata';
   if(dest) dest+='-iata';
   if(!priceLimit) priceLimit = 1500;
@@ -77,16 +75,10 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
 
        });
 
-       // results.forEach(function(data){
-       //  console.log(data);
-       // });
-
-        console.log("RESULTS HELPER", results)
         cb(results);
 
-
       })
-    }else{
+    } else{
       console.log('err',err);
     }
   });

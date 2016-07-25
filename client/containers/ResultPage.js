@@ -26,7 +26,6 @@ class ResultPage extends React.Component {
 
     this.props.cities.forEach(function(cityObj){
       context.searchFlights(context.props.constraints[0], cityObj,  function(flights) {
-        console.log("returned data", flights);
         context.props.setFlights(flights);
       });
     });
@@ -61,10 +60,7 @@ class ResultPage extends React.Component {
     this.setState({
       loaded: true
     });
-    })
-
   }
-
 
   render() {
     var resultsExist = false;
@@ -72,7 +68,7 @@ class ResultPage extends React.Component {
 
     if(this.props.results.length > 0 && this.state.loaded){
         resultsExist = true;
-      }
+    }
 
     console.log("RENDER PROPS", this.props.results);
     var options = {

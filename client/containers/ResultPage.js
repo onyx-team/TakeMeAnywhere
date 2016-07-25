@@ -92,19 +92,22 @@ class ResultPage extends React.Component {
     };
 
     return (
-      <div className='row row-centered'>
-        <Loader loaded={this.state.loaded} options={options} className="spinner" />
+      <div className="container">
+        <div className='row row-centered'>
+          <a className="btn btn-danger row row-centered">New Search</a>
+          <Loader loaded={this.state.loaded} options={options} className="spinner" />
 
-        <NoResult exists = {resultsExist}/>
+          <NoResult exists = {resultsExist}/>
 
-        {this.props.results.sort(function(a,b){
-          return a.price - b.price;
-        }).map((result, i) =>
-          <ResultPageEntry
-            key={i}
-            result={result}
-            className='col-xs-3 col-centered' />
-        )}
+          {this.props.results.sort(function(a,b){
+            return a.price - b.price;
+          }).map((result, i) =>
+            <ResultPageEntry
+              key={i}
+              result={result}
+              className='col-xs-3 col-centered' />
+          )}
+        </div>
       </div>
     )
   }

@@ -7,10 +7,10 @@ class ResultPageEntry extends React.Component {
 
   render() {
     var price = (''+this.props.result.price).split('.');
-          if(price[1].length===1){
-            price[1] += '0';
-          }
-         price = price.join('.');
+    if(price[1].length===1){
+      price[1] += '0';
+    }
+   price = price.join('.');
 
     return (
       <div>

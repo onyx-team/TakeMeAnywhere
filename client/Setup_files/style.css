@@ -86,18 +86,6 @@ select {
   background-color: transparent;
   color: white;
   float: right;
-  text-align: center;
-  margin: 10px;
-}
-
-.aboutButton a:active{
-  text-decoration: none;
-  color: white;
-}
-
-.aboutButton a:hover{
-  text-decoration: none;
-  color: white;
 }
 
 .aboutPic {

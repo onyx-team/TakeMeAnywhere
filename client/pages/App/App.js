@@ -16,6 +16,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
+      <div>
+        <a className='aboutButton' href='#/about'>About Us</a>
+      </div>
       <Header />
         {this.props.children}
       </div>

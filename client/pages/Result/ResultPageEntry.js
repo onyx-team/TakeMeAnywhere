@@ -18,8 +18,14 @@ class ResultPageEntry extends React.Component {
         <div className='description'>
           <div className='destination'>
           <h2>{this.props.result.city}</h2>
-            <img className='destImg' src={this.props.result.airlineImg} />
-            <img className='destImg' src={this.props.result.agentImg} />
+            <div>
+              <h4>Airline: {this.props.result.airline}</h4>
+              <img className='destImg' src={this.props.result.airlineImg} />
+            </div>
+            <div>
+              <h4>Honored by: {this.props.result.agent}</h4>
+              <img className='destImg' src={this.props.result.agentImg} />
+            </div>
           </div>
         </div>
         <h2 className='price'>${price}</h2>

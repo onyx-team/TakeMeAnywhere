@@ -63,9 +63,6 @@ class ResultPage extends React.Component {
     });
   }
 
-}
-
-
   render() {
     var resultsExist = false;
 
@@ -112,6 +109,7 @@ class ResultPage extends React.Component {
       </div>
     )
   }
+}
 //moodData will now be available as props in MoodPage class
 function mapStateToProps(state) {
   return {

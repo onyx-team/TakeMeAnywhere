@@ -1,7 +1,6 @@
 import React from 'react';
 import ResultPage from './ResultPage';
 import MoodPageEntry from '../pages/Mood/MoodPageEntry.js';
-  //connects this props and state in reducer
 import { connect } from 'react-redux';
 import { setMood } from '../actions/index';
 import { setCities } from '../actions/index';

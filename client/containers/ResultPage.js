@@ -9,7 +9,7 @@ import moodSelector from '../actions/index';
 import { setFlights } from '../actions/index';
 import axios from 'axios';
 import NoResult from '../pages/Result/NoResults';
-var Loader = require('react-loader');
+const Loader = require('react-loader');
 
 class ResultPage extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class ResultPage extends React.Component {
   }
 
   componentWillMount() {
-    var context = this;
+    const context = this;
     this.setState({
       loaded: false
     });
@@ -62,7 +62,7 @@ class ResultPage extends React.Component {
   }
 
   render() {
-    var resultsExist = true;
+    let resultsExist = true;
 
 
     if(this.props.results.length === 0 && this.state.loaded){
@@ -70,7 +70,7 @@ class ResultPage extends React.Component {
     }
 
     console.log("RENDER PROPS", this.props.results);
-    var options = {
+    let options = {
     lines: 17,
     length: 28,
     width: 2,

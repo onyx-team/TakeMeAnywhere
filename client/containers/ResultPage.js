@@ -63,11 +63,11 @@ class ResultPage extends React.Component {
   }
 
   render() {
-    var resultsExist = false;
+    var resultsExist = true;
 
 
-    if(this.props.results.length > 0 && this.state.loaded){
-        resultsExist = true;
+    if(this.props.results.length === 0 && this.state.loaded){
+        resultsExist = false;
     }
 
     console.log("RENDER PROPS", this.props.results);

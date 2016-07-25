@@ -15,10 +15,8 @@ var Loader = require('react-loader');
 class ResultPage extends React.Component {
   constructor(props) {
     super(props);
-    this.onResultClick = this.onResultClick.bind(this);
     this.searchFlights = this.searchFlights.bind(this);
   }
-
 
   componentWillMount() {
     var context = this;
@@ -29,9 +27,8 @@ class ResultPage extends React.Component {
     this.props.cities.forEach(function(cityObj){
       context.searchFlights(context.props.constraints[0], cityObj,  function(flights) {
         console.log("returned data", flights);
-
-      context.props.setFlights(flights);
-    });
+        context.props.setFlights(flights);
+      });
     });
 
   };
@@ -106,7 +103,6 @@ class ResultPage extends React.Component {
           return a.price - b.price;
         }).map((result, i) =>
           <ResultPageEntry
-            onClick={ () => this.onResultClick(result) }
             key={i}
             result={result}
             className='col-xs-3 col-centered' />

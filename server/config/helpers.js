@@ -46,7 +46,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
             //get price and booking link
             storage.price = flight.PricingOptions[0].Price;
             storage.url = flight.PricingOptions[0].DeeplinkUrl;
-
+            //storage.url = flight.BookingDetailsLink.Uri;
             //get agency id
             var agentID =  flight.PricingOptions[0].Agents[0];
 

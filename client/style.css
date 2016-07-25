@@ -87,17 +87,23 @@ select {
   color: white;
   float: right;
   text-align: center;
+  text-decoration: none;
   margin: 10px;
 }
 
-.aboutButton a:active{
+a.aboutButton:active {
   text-decoration: none;
   color: white;
 }
 
-.aboutButton a:hover{
-  text-decoration: none;
+a.aboutButton:hover {
   color: white;
+  text-decoration: none;
+}
+
+a.aboutButton:visited {
+  color: white;
+  text-decoration: none;
 }
 
 .aboutPic {

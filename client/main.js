@@ -8,8 +8,12 @@ import routes from './routes.js';
 import reducers from './reducers';
 import PromiseHandler from './middlewares/promise_handler';
 
+//Register any and all middleware to go through here
 const createStoreWithMiddleware = applyMiddleware(PromiseHandler)(createStore);
 
+
+//Wrap the Router in Provider (which then loads up components based on set route in the routes.js file)
+  //Provider will listen for changes to state before alerting the app's Containers (components that have access to state);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>

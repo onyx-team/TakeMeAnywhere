@@ -7,6 +7,11 @@ import AboutPage from './pages/About/AboutPage.js';
 import ResultPage from './containers/ResultPage.js';
 import Constraints from './containers/ConstraintsPage.js';
 
+/*
+  Index Route will always load the specified component along with the parent route path.
+
+  The other child paths will load targeted components when given path is inputed
+*/
 
 export default (
   <Route path="/" component={App}>

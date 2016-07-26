@@ -17,6 +17,9 @@ class ResultPage extends React.Component {
     this.searchFlights = this.searchFlights.bind(this);
   }
 
+  //Spinner functionality:
+    // Initial state of loaded set to false
+    //Once loaded is true, the spinner will disappear
   componentWillMount() {
     const context = this;
     this.setState({
@@ -54,7 +57,7 @@ class ResultPage extends React.Component {
       })
   }
 
-
+  //Once the component receives its results, we set loaded to true to disable the spinner.
   componentWillReceiveProps(){
     this.setState({
       loaded: true
@@ -68,8 +71,6 @@ class ResultPage extends React.Component {
     if(this.props.results.length === 0 && this.state.loaded){
         resultsExist = false;
     }
-
-    console.log("RENDER PROPS", this.props.results);
     let options = {
     lines: 17,
     length: 28,
@@ -95,9 +96,7 @@ class ResultPage extends React.Component {
         <div className='row row-centered'>
           <a href="/" className="btn btn-danger row row-centered">New Search</a>
           <Loader loaded={this.state.loaded} options={options} className="spinner" />
-
           <NoResult exists = {resultsExist}/>
-
           {this.props.results.sort(function(a,b){
             return a.price - b.price;
           }).map((result, i) =>
@@ -111,7 +110,9 @@ class ResultPage extends React.Component {
     )
   }
 }
+
 //moodData will now be available as props in MoodPage class
+//Anytime the component updates, mapStateToProps will be called. Pass in the props here that you want to be available on your components.
 function mapStateToProps(state) {
   return {
     results: state.results,
@@ -122,10 +123,14 @@ function mapStateToProps(state) {
   }
 }
 
-
+//When passing in an object o bindActionCreators, react assumes each will be an action creator. Use this to bind your action creators to props so that you can use those functions.
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({setFlights: setFlights, resultSelector: resultSelector, setMood: setMood, moodSelector: moodSelector}, dispatch);
 }
+
+// Connects a React component to a Redux store.
+// It does not modify the component class passed to it.
+// Instead, it returns a new, connected component class, for you to use.
 
 export default connect(mapStateToProps, mapDispatchToProps)(ResultPage);
 

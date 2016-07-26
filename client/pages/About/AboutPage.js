@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, Route, Link, hashHistory} from 'react-router';
-import AboutPagePic from './AboutPagePic.js';
 import AboutPageEntry from './AboutPageEntry.js';
 import Mood from '../../containers/MoodPage.js';
 
@@ -28,18 +27,12 @@ var team = [
   ]
 
 const AboutPage = (props) => {
-  console.log("About page props", props)
   return (
     <div className='container-fluid blueBackground'>
       <div className='row row-centered'>
       {team.map((team, i) =>
-        <AboutPagePic key={i} teamData={team} />
-      )}
-{/*
-      {team.map((team, i) =>
         <AboutPageEntry key={i} teamData={team} />
-      )}
-*/}
+      )};
       </div>
     </div>
   )

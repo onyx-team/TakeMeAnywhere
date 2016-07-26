@@ -3,10 +3,12 @@ var apikey = process.env.API_KEY || require('../key').api_key;
 
 exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb ){
 
+//iata is necessary to specifiy type
   if(origin) origin+='-iata';
   if(dest) dest+='-iata';
   if(!priceLimit) priceLimit = 1500;
 
+  //do a post on the query
  request.post('http://partners.api.skyscanner.net/apiservices/pricing/v1.0/',{
   form:{
       apiKey: apikey,
@@ -20,6 +22,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
       adults: adults || 1,
       children: kids || 0
     }
+// and then do a get on the location provided by the header location
   }, function(err, res, body){
     if(!err){
       //filters from body and returns 5 lowest prices

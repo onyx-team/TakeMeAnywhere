@@ -26,6 +26,7 @@ class ResultPage extends React.Component {
       loaded: false
     });
 
+    //loops through each city select by the moodselector and does a post request to the express route
     this.props.cities.forEach(function(cityObj){
       context.searchFlights(context.props.constraints[0], cityObj,  function(flights) {
         context.props.setFlights(flights);
@@ -67,7 +68,7 @@ class ResultPage extends React.Component {
   render() {
     let resultsExist = true;
 
-
+    //sets the condition to create noresults component
     if(this.props.results.length === 0 && this.state.loaded){
         resultsExist = false;
     }

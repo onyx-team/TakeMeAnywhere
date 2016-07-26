@@ -20,6 +20,7 @@ export default function({dispatch}) {
     /*
       If payload is Promise, stop action and allow to finish.
     */
+      action.payload
       .then(function(result) {
         /*
           Point new variable to the original action object but replace the payload property with the return promise

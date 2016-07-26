@@ -7,7 +7,7 @@ import { setFlights } from '../actions/index';
 import Autosuggest from 'react-autosuggest';
 import airports from '../../airports.js'
 
-
+//lines 11 - 37 are from the react-autosuggest repository under basic usage -- https://github.com/moroshko/react-autosuggest.
 function escapeRegexCharacters(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -64,11 +64,12 @@ class ConstraintsPage extends React.Component {
     this.onSubmitClick = this.onSubmitClick.bind(this);
     this.makeDate = this.makeDate.bind(this);
   }
-
+  //changes price state when price slider is changed
   changePrice(event) {
     this.setState({price: event.target.value });
   }
 
+  //Input validation for when departure date is changed. When date is valid it will change the departure date state.
   changeDepDate(event) {
     let depDate = this.makeDate(event.target.value);
     let returnDate = this.makeDate(this.state.returnDate);
@@ -86,6 +87,7 @@ class ConstraintsPage extends React.Component {
     this.setState({depDate: event.target.value });
   }
 
+  //Input validation for when the return date is changed. When date is valid it will change the return date state.
   changeReturnDate(event) {
     let depDate = this.makeDate(this.state.depDate);
     let returnDate = this.makeDate(event.target.value);
@@ -98,6 +100,7 @@ class ConstraintsPage extends React.Component {
     this.setState({returnDate: event.target.value });
   }
 
+  //helper function used to convert dates passed from the date input into the new Date method. This allows the dates to be compared for validation.
   makeDate(date) {
     let dateArr = date.split('-')
     let year = dateArr[0];
@@ -106,9 +109,12 @@ class ConstraintsPage extends React.Component {
     return new Date(year, month - 1, day);
   }
 
+  //Changes the adult state when the number of adults is changed.
   changeAdults(event) {
     this.setState({adults: event.target.value });
   }
+
+  //Changes the children state when the number of children is changed.
   changeChildren(event) {
     this.setState({children: event.target.value});
   }
@@ -118,13 +124,14 @@ class ConstraintsPage extends React.Component {
   }
 
 
-
+  //Sets new state for departure city when the input is changed. Used for react-autosuggest.
   onChange(event, { newValue, method }) {
     this.setState({
       value: newValue
     });
   }
 
+  //Updates the suggestions state whenever the input is changed in the departure state input box.
   onSuggestionsUpdateRequested({ value }) {
     this.setState({
       suggestions: getSuggestions(value)
@@ -139,7 +146,7 @@ class ConstraintsPage extends React.Component {
   }
 
 
-
+  //Form validation for when the submit button is clicked. This makes sure all of the necessary fields are filled in and makes sure the airport code is the correct length.
   onSubmitClick() {
     if (this.state.value === "") {
       this.setState({submitError: 'Please enter your Departure City'})

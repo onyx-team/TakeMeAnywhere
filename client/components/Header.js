@@ -6,7 +6,6 @@ class Header extends React.Component {
   }
 
   render() {
-
     return (
       <div className='logo col-md-12'>
         <img src='../takeMeAnywhere2.svg' className='logoImg' />

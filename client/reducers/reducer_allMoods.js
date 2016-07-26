@@ -1,5 +1,6 @@
 export default function(state=null, action) {
 
+//default moods set for MoodPage
   return [
     { mood: 'party' },
     { mood: 'nature' },

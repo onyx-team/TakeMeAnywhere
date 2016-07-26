@@ -7,7 +7,12 @@ export const SET_FLIGHTS = 'SET_FLIGHTS';
 export const FETCH_MOOD = 'FETCH_MOOD';
 export const SET_CITIES = 'SET_CITIES';
 
+/******************************
+      Action Creators
 
+  Action Creators return objects with a type (an event the reducer will listen for) and payload (data formatted into desired form)
+
+******************************/
 export function setCities(mood){
   var city = cities[mood.mood];
   return {

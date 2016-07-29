@@ -29,11 +29,11 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
       request.get(res.headers.location+'?apiKey='+apikey+'&pageindex=0&pagesize=5&sortorder=asc&sorttype=price' ,function(err, res, body){
 
           body = JSON.parse(body);
-
-
        var agents = body.Agents;
        var carriers = body.Carriers;
+       var places = body.Places;
        var results = [];
+       var current = 0;
 
         body.Itineraries.forEach(function(flight){
           //only push items within price limit
@@ -71,13 +71,32 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
               }
             }
 
+            //get origin and destination ids
+            var originId = body.Legs[current].OriginStation;
+            var destinationId = body.Legs[current].DestinationStation;
+
+            //get origin and destination codes
+            for(var i = 0; i < places.length; i++){
+              if (originId === places[i].Id){
+                storage.originCode = places[i].Code;
+              }
+              if (destinationId === places[i].Id){
+                storage.destinationID = places[i].Code;
+              }
+            }
+
+            //add departure times, arrival times, flight number
+            storage.departureTime = body.Legs[current].Departure;
+            storage.arrivalTime = body.Legs[current].Arrival;
+            storage.flightNumber = body.Segments[current].FlightNumber;
             storage.cityLink = cityLink;
             storage.city = city;
             results.push(storage);
+            current++
           }
 
        });
-
+        console.log(results);
         cb(results);
 
       })
@@ -87,3 +106,29 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
   });
 
 }
+
+// exports.getHotels = function(origin, dest, depart, returned, adults, kids, city, cityLink , cb ){
+
+//   let hotelSuggest = `http://partners.api.skyscanner.net/apiservices/hotels/autosuggest/v2/US/USD/en-US/${query}?apikey=${apikey}`
+
+//   let hotelPrice = `http://partners.api.skyscanner.net/apiservices/hotels/liveprices/v2/US/USD/en-US/${entityid}/${depart}/${returned}/${guests}/${rooms}?apiKey=${apiKey}`
+
+//   //do a post on the query
+//   request.get(hotelSuggest, {},
+//   function(err, res, body){
+//     if(!err){
+//       //filters from body and returns 5 lowest prices
+//       request.get(res.headers.location+'?apiKey='+apikey+'&pageindex=0&pagesize=5&sortorder=asc&sorttype=price' ,function(err, res, body){
+
+//           body = JSON.parse(body);
+
+
+//         cb(results);
+
+//       })
+//     } else{
+//       console.log('err',err);
+//     }
+//   });
+
+// }

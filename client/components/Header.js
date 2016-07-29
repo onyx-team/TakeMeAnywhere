@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router';
+
 
 class Header extends React.Component {
   constructor(props) {
@@ -7,12 +9,13 @@ class Header extends React.Component {
 
   render() {
     return (
-      <div className='logo col-md-12'>
-        <img src='../takeMeAnywhere2.svg' className='logoImg' />
-        <h1 className='logoText'>Take Me Anywhere</h1>
+      <div className='logo row'>
+        <h1 className='center-block text-center'><Link to="/">Take Me Anywhere</Link></h1>
       </div>
     )
   }
 }
 
 export default Header;
+
+        // <img src='../takeMeAnywhere2.svg' className='logoImg' />

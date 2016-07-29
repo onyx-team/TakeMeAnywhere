@@ -1,24 +1,76 @@
 const moodCities = {
- party:[{
+ party:[
+      {
          city: 'Las Vegas, Nevada',
          cityLink: 'http://www.vegas.com/attractions/',
-         airport:'LAS'
-       },{
+         airport:'LAS',
+         geometry: {
+           "northeast" : {
+              "lat" : 36.3806231,
+              "lng" : -115.0620721
+           },
+           "southwest" : {
+              "lat" : 36.1296229,
+              "lng" : -115.4146251
+           }
+         }
+       },
+       {
         city: 'Miami, Florida',
         cityLink: 'http://www.miamiandbeaches.com/',
-        airport: 'MIA'
+        airport: 'MIA',
+        geometry: {
+           "northeast" : {
+              "lat" : 25.8556059,
+              "lng" : -80.1424004
+           },
+           "southwest" : {
+              "lat" : 25.709042,
+              "lng" : -80.31976
+           }
+          }
        },{
          city: 'Macau, China',
          cityLink: 'https://www.tripadvisor.com/Attractions-g664891-Activities-Macau.html',
-         airport: 'MFM'
+         airport: 'MFM',
+         geometry: {
+               "northeast" : {
+                  "lat" : 22.2170639,
+                  "lng" : 113.5981886
+               },
+               "southwest" : {
+                  "lat" : 22.1097694,
+                  "lng" : 113.5287411
+               }
+            }
        },{
         city: 'Bangkok, Thailand',
         cityLink: 'http://www.bangkok.com/most-popular-historical/',
-        airport: 'BKK'
+        airport: 'BKK',
+        geometry: {
+               "northeast" : {
+                  "lat" : 13.9551109,
+                  "lng" : 100.938408
+               },
+               "southwest" : {
+                  "lat" : 13.4940899,
+                  "lng" : 100.3278135
+               }
+            }
        },{
          city:'New York, New York',
          cityLink: 'http://www.nycgo.com/things-to-do/attractions',
-         airport:'NYC'
+         airport:'NYC',
+         geometry: {
+               "northeast" : {
+                  "lat" : 40.9152555,
+                  "lng" : -73.70027209999999
+               },
+               "southwest" : {
+                  "lat" : 40.496044,
+                  "lng" : -74.255735
+               }
+            }
        }],
  adventure:[{
          city: 'San Juan, Puerto Rico',
@@ -39,7 +91,17 @@ const moodCities = {
        },{
          city: 'Marrakech, Morocco',
          cityLink: 'http://www.planetware.com/tourist-attractions-/marrakesh-marrakech-mar-mar-mar.htm',
-         airport: 'RAK'
+         airport: 'RAK',
+         geometry: {
+               "northeast" : {
+                  "lat" : 31.7162668,
+                  "lng" : -7.887625799999999
+               },
+               "southwest" : {
+                  "lat" : 31.552976,
+                  "lng" : -8.128080499999999
+               }
+            }
        }],
  nature:[{
          city: 'Yellowstone National Park, Wyoming',

@@ -6,6 +6,7 @@ export const SET_MOOD = 'SET_MOOD';
 export const SET_FLIGHTS = 'SET_FLIGHTS';
 export const FETCH_MOOD = 'FETCH_MOOD';
 export const SET_CITIES = 'SET_CITIES';
+export const SET_WIKI= 'SET_WIKI';
 
 /******************************
       Action Creators

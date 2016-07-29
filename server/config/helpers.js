@@ -1,9 +1,20 @@
 var request = require('request');
 var apikey = process.env.API_KEY || require('../key').api_key;
 
+// This function queries wikipedia for brief excerpts
+// that will be used instead of the static links
+exports.queryWiki = function(query, cb){
+
+  var url = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=' + encodeURIComponent(query);
+
+  request.post(url, function(err, res, body){
+    cb(body);
+  });
+};
+
 exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb ){
 
-//iata is necessary to specifiy type
+//iata is necessary to specify type
   if(origin) origin+='-iata';
   if(dest) dest+='-iata';
   if(!priceLimit) priceLimit = 1500;
@@ -28,8 +39,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
       //filters from body and returns 5 lowest prices
       request.get(res.headers.location+'?apiKey='+apikey+'&pageindex=0&pagesize=5&sortorder=asc&sorttype=price' ,function(err, res, body){
 
-          body = JSON.parse(body);
-
+       body = JSON.parse(body);
 
        var agents = body.Agents;
        var carriers = body.Carriers;

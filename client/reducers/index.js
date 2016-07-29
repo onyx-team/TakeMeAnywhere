@@ -3,7 +3,7 @@ import MoodReducer from './reducer_allMoods';
 import ResultReducer from './reducer_results';
 import ConstraintReducer from './reducer_constraints';
 import ActiveMoodReducer from './reducer_active_mood';
-import CityReducer from './reducer_moodCities'
+import CityReducer from './reducer_moodCities';
 
 /*
   rootReducer combines all reducers from the app and combines it all into a single state object a.k.a the store;

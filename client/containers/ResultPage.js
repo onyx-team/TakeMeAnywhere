@@ -9,7 +9,9 @@ import moodSelector from '../actions/index';
 import { setFlights } from '../actions/index';
 import axios from 'axios';
 import NoResult from '../pages/Result/NoResults';
+import $ from 'jquery';
 const Loader = require('react-loader');
+
 
 class ResultPage extends React.Component {
   constructor(props) {
@@ -29,9 +31,15 @@ class ResultPage extends React.Component {
     //loops through each city select by the moodselector and does a post request to the express route
     this.props.cities.forEach(function(cityObj){
       context.searchFlights(context.props.constraints[0], cityObj,  function(flights) {
+        console.log(cityObj);
+
         context.props.setFlights(flights);
       });
     });
+
+    // this.props.cities.forEach(function(cityObj){
+    //   context.fetchDescription()
+    // });
 
   };
 
@@ -55,6 +63,22 @@ class ResultPage extends React.Component {
       })
       .catch(function(err) {
         console.log("Couldn't grab flights: " + err);
+      })
+  }
+
+  fetchDescription(city, callback){
+    const query = {
+      titles: "Las Vegas"
+    };
+
+    axios.post('/api/wiki', query)
+      .then(function(description){
+        const key = Object.keys(description.data.query.pages)[0];
+        const value = description.data.query.pages[key].extract;
+        callback(value);
+      })
+      .catch(function(err) {
+        console.log("Couldn't grab description: " + err);
       })
   }
 

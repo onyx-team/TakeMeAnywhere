@@ -13,4 +13,15 @@ module.exports = function(app, express) {
 
   })
 
+  app.post('/api/wiki', function(req,res){
+    //take in params fromt he body
+    const params = req.body.titles;
+
+    //throw them in and use the callback function to return data after it's ready
+    helpers.queryWiki(params, function(data){
+      res.send(200, data);
+    });
+
+  })
+
 }

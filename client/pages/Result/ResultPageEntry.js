@@ -6,6 +6,7 @@ class ResultPageEntry extends React.Component {
   }
 
   render() {
+    console.log(this.props);
     let price = (''+this.props.result.price).split('.');
     if(price[1].length===1){
       price[1] += '0';

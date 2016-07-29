@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 app.listen(port, function() {
-  console.log('connected suckas!')
+  console.log('Connected!')
 })
 
 

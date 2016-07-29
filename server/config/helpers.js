@@ -81,7 +81,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
                 storage.originCode = places[i].Code;
               }
               if (destinationId === places[i].Id){
-                storage.destinationID = places[i].Code;
+                storage.destinationCode = places[i].Code;
               }
             }
 

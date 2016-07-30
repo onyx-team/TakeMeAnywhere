@@ -1,12 +1,17 @@
 import React from 'react';
+import $ from 'jquery';
 
 class ResultPageEntry extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentWillMount(){
+    $("body").removeClass( "background-image" );
+    $("body").addClass( "gradient" );
+  }
+
   render() {
-    console.log(this.props);
     let price = (''+this.props.result.price).split('.');
     if(price[1].length===1){
       price[1] += '0';

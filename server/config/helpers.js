@@ -106,7 +106,7 @@ var getFlights = function(origin, dest, depart, returned, priceLimit, adults, ki
 
 }
 
-var getHotels = function(depart, returned, adults, kids, city, cb){
+var getLocation = function(depart, returned, adults, kids, city, cb){
   var query = city.replace(/\s/g, '%20');
   var getHotel = `http://partners.api.skyscanner.net/apiservices/hotels/autosuggest/v2/US/USD/en-US/${query}?apikey=${apikey}`;
   request.get(getHotel, function(err, res, body){
@@ -120,7 +120,7 @@ var getHotels = function(depart, returned, adults, kids, city, cb){
 }
 
 var priceHotels = function(depart, returned, adults, kids, city, cb){
-  getHotels(depart, returned, adults, kids, city, function(id){
+  getLocation(depart, returned, adults, kids, city, function(id){
     var guests = adults + kids;
     var rooms = Math.ceil(guests/4);
     var priceHotel = `http://partners.api.skyscanner.net/apiservices/hotels/liveprices/v2/US/USD/en-US/${id}/${depart}/${returned}/${guests}/${rooms}?apiKey=prtl6749387986743898559646983194`
@@ -129,14 +129,10 @@ var priceHotels = function(depart, returned, adults, kids, city, cb){
       if(!err){
         var hotelStore = {};
         body = JSON.parse(body);
-        if(body.hotels[0]){
-          hotelStore.name = body.hotels[0].name;
-          hotelStore.image = body.hotels[0].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
-          hotelStore.stars = body.hotels[0].star_rating;
-          hotelStore.id = body.hotels[0].hotel_id;
-          hotelStore.request = body.urls.hotel_details;
-          cb(hotelStore);
-        }
+        hotelStore.main = body;
+        hotelStore.id = `${body.hotels[0].hotel_id},${body.hotels[1].hotel_id},${body.hotels[2].hotel_id},${body.hotels[3].hotel_id},${body.hotels[4].hotel_id}`;
+        hotelStore.request = body.urls.hotel_details;
+        cb(hotelStore);
       } else {
         console.log('err', err);
       }
@@ -148,12 +144,24 @@ var hotelDetails = function(depart, returned, adults, kids, city, cb){
   priceHotels(depart, returned, adults, kids, city, function(store){
     request.get('http://partners.api.skyscanner.net' + store.request + '&hotelids=' + store.id, function(err, res, body){
       if(!err){
+        var hotelList = [];
         body = JSON.parse(body);
-        store.description = body.hotels[0].description;
-        store.link = body.hotels_prices[0].agent_prices[0].booking_deeplink;
-        store.pricePerNight = body.hotels_prices[0].agent_prices[0].price_per_room_night;
-        store.total = body.hotels_prices[0].agent_prices[0].price_total;
-        cb(store);
+
+        for(var i = 0; i < 6; i++){
+          var hotelDeets = {};
+          if(body.hotels[i]){
+            hotelDeets.name = store.main.hotels[i].name;
+            hotelDeets.image = store.main.hotels[i].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
+            hotelDeets.stars = store.main.hotels[i].star_rating;
+            hotelDeets.description = body.hotels[i].description;
+            hotelDeets.link = body.hotels_prices[i].agent_prices[0].booking_deeplink;
+            hotelDeets.pricePerNight = body.hotels_prices[i].agent_prices[0].price_per_room_night;
+            hotelDeets.total = body.hotels_prices[i].agent_prices[0].price_total;
+            hotelList.push(hotelDeets);
+          }
+        }
+
+        cb(hotelList);
       } else {
         console.log('err',err);
       }
@@ -164,11 +172,62 @@ var hotelDetails = function(depart, returned, adults, kids, city, cb){
 exports.flightsAndHotels = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
   getFlights(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , function(results){
     hotelDetails(depart, returned, adults, kids, results[0].city, function(hotels){
-      results[0].hotel = {};
-      for(var k in hotels){
-        results[0].hotel[k] = hotels[k];
-      }
+      results[0].hotelList = hotels;
       cb(results);
     })
   });
 }
+
+// var priceHotels = function(depart, returned, adults, kids, city, cb){
+//   getLocation(depart, returned, adults, kids, city, function(id){
+//     var guests = adults + kids;
+//     var rooms = Math.ceil(guests/4);
+//     var priceHotel = `http://partners.api.skyscanner.net/apiservices/hotels/liveprices/v2/US/USD/en-US/${id}/${depart}/${returned}/${guests}/${rooms}?apiKey=prtl6749387986743898559646983194`
+
+//     request.get(priceHotel, function(err, res, body){
+//       if(!err){
+//         var hotelStore = {};
+//         body = JSON.parse(body);
+//         if(body.hotels[0]){
+//           hotelStore.name = body.hotels[0].name;
+//           hotelStore.image = body.hotels[0].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
+//           hotelStore.stars = body.hotels[0].star_rating;
+//           hotelStore.id = body.hotels[0].hotel_id;
+//           hotelStore.request = body.urls.hotel_details;
+//           cb(hotelStore);
+//         }
+//       } else {
+//         console.log('err', err);
+//       }
+//     })
+//   });
+// }
+
+// var hotelDetails = function(depart, returned, adults, kids, city, cb){
+//   priceHotels(depart, returned, adults, kids, city, function(store){
+//     request.get('http://partners.api.skyscanner.net' + store.request + '&hotelids=' + store.id, function(err, res, body){
+//       if(!err){
+//         body = JSON.parse(body);
+//         store.description = body.hotels[0].description;
+//         store.link = body.hotels_prices[0].agent_prices[0].booking_deeplink;
+//         store.pricePerNight = body.hotels_prices[0].agent_prices[0].price_per_room_night;
+//         store.total = body.hotels_prices[0].agent_prices[0].price_total;
+//         cb(store);
+//       } else {
+//         console.log('err',err);
+//       }
+//     });
+//   });
+// }
+
+// exports.flightsAndHotels = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
+//   getFlights(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , function(results){
+//     hotelDetails(depart, returned, adults, kids, results[0].city, function(hotels){
+//       results[0].hotel = {};
+//       for(var k in hotels){
+//         results[0].hotel[k] = hotels[k];
+//       }
+//       cb(results);
+//     })
+//   });
+// }

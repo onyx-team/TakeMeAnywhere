@@ -149,9 +149,9 @@ var hotelDetails = function(depart, returned, adults, kids, city, cb){
 
         for(var i = 0; i < 6; i++){
           var hotelDeets = {};
-          if(body.hotels[i]){
+          if(body.hotels[i] && body.hotels_prices[i].agent_prices[0]){
             hotelDeets.name = store.main.hotels[i].name;
-            hotelDeets.image = store.main.hotels[i].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
+            hotelDeets.image = 'http://' + store.main.hotels[i].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
             hotelDeets.stars = store.main.hotels[i].star_rating;
             hotelDeets.description = body.hotels[i].description;
             hotelDeets.link = body.hotels_prices[i].agent_prices[0].booking_deeplink;

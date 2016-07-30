@@ -1,7 +1,7 @@
 var request = require('request');
 var apikey = process.env.API_KEY || require('../key').api_key;
 
-exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
+var getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
 
 //iata is necessary to specifiy type
   if(origin) origin+='-iata';
@@ -106,7 +106,7 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
 
 }
 
-var getHotels = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink, cb){
+var getHotels = function(depart, returned, adults, kids, city, cb){
   var query = city.replace(/\s/g, '%20');
   var getHotel = `http://partners.api.skyscanner.net/apiservices/hotels/autosuggest/v2/US/USD/en-US/${query}?apikey=${apikey}`;
   request.get(getHotel, function(err, res, body){
@@ -119,22 +119,21 @@ var getHotels = function(origin, dest, depart, returned, priceLimit, adults, kid
   });
 }
 
-var priceHotels = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink, cb){
-  getHotels(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink, function(id){
+var priceHotels = function(depart, returned, adults, kids, city, cb){
+  getHotels(depart, returned, adults, kids, city, function(id){
     var guests = adults + kids;
     var rooms = Math.ceil(guests/4);
-    var count = 0;
     var priceHotel = `http://partners.api.skyscanner.net/apiservices/hotels/liveprices/v2/US/USD/en-US/${id}/${depart}/${returned}/${guests}/${rooms}?apiKey=prtl6749387986743898559646983194`
 
     request.get(priceHotel, function(err, res, body){
       if(!err){
         var hotelStore = {};
         body = JSON.parse(body);
-        if(body.hotels[count]){
-          hotelStore.name = body.hotels[count].name;
-          hotelStore.image = body.hotels[count].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
-          hotelStore.stars = body.hotels[count].star_rating;
-          hotelStore.id = body.hotels[count].hotel_id;
+        if(body.hotels[0]){
+          hotelStore.name = body.hotels[0].name;
+          hotelStore.image = body.hotels[0].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
+          hotelStore.stars = body.hotels[0].star_rating;
+          hotelStore.id = body.hotels[0].hotel_id;
           hotelStore.request = body.urls.hotel_details;
           cb(hotelStore);
         }
@@ -145,20 +144,31 @@ var priceHotels = function(origin, dest, depart, returned, priceLimit, adults, k
   });
 }
 
-exports.hotelDetails = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink, cb){
-  priceHotels(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink, function(store){
+var hotelDetails = function(depart, returned, adults, kids, city, cb){
+  priceHotels(depart, returned, adults, kids, city, function(store){
     request.get('http://partners.api.skyscanner.net' + store.request + '&hotelids=' + store.id, function(err, res, body){
       if(!err){
         body = JSON.parse(body);
         store.description = body.hotels[0].description;
         store.link = body.hotels_prices[0].agent_prices[0].booking_deeplink;
         store.pricePerNight = body.hotels_prices[0].agent_prices[0].price_per_room_night;
-        store.total = body.hotels_prices[0].agent_prices[0].price_total
-        console.log(store);
+        store.total = body.hotels_prices[0].agent_prices[0].price_total;
         cb(store);
       } else {
         console.log('err',err);
       }
     });
+  });
+}
+
+exports.flightsAndHotels = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
+  getFlights(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , function(results){
+    hotelDetails(depart, returned, adults, kids, results[0].city, function(hotels){
+      results[0].hotel = {};
+      for(var k in hotels){
+        results[0].hotel[k] = hotels[k];
+      }
+      cb(results);
+    })
   });
 }

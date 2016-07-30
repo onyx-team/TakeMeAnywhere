@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ResultPageEntry from '../pages/Result/ResultPageEntry.js';
+import HotelPageEntry from '../pages/Result/HotelPageEntry.js';
 import { connect } from 'react-redux';
 import { setMood } from '../actions/index';
 import { bindActionCreators } from 'redux';
@@ -92,6 +93,12 @@ class ResultPage extends React.Component {
     scale: 1.00
     };
 
+    let hotels = [];
+
+    if(this.props.results.length > 0){
+      hotels = this.props.results[0].hotelList
+    }
+
     return (
       <div className="container">
         <div className='row row-centered'>
@@ -103,7 +110,13 @@ class ResultPage extends React.Component {
           }).map((result, i) =>
             <ResultPageEntry
               key={i}
-              result={result}
+              result= {result}
+              className='col-xs-3 col-centered' />
+          )}
+          {hotels.map((result, i) =>
+            <HotelPageEntry
+              key={i}
+              result= {result}
               className='col-xs-3 col-centered' />
           )}
         </div>

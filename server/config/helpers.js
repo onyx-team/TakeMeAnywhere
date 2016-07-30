@@ -171,9 +171,11 @@ var hotelDetails = function(depart, returned, adults, kids, city, cb){
 
 exports.flightsAndHotels = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
   getFlights(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , function(results){
-    hotelDetails(depart, returned, adults, kids, results[0].city, function(hotels){
-      results[0].hotelList = hotels;
-      cb(results);
-    })
+    if(results.length > 0){
+      hotelDetails(depart, returned, adults, kids, results[0].city, function(hotels){
+        results[0].hotelList = hotels;
+        cb(results);
+      })
+    }
   });
 }

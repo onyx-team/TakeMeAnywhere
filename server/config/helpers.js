@@ -12,7 +12,7 @@ exports.queryWiki = function(query, cb){
   });
 };
 
-exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb ){
+var getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb ){
 
 //iata is necessary to specify type
   if(origin) origin+='-iata';

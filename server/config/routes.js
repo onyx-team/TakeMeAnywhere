@@ -7,7 +7,7 @@ module.exports = function(app, express) {
     const params = req.body;
 
     //throw them in and use the callback function to return data after it's ready
-    helpers.getFlights(params.origin, params.dest, params.depart, params.returned, params.priceLimit, params.adults, params.kids, params.city , params.cityLink , function(data){
+    helpers.hotelDetails(params.origin, params.dest, params.depart, params.returned, params.priceLimit, params.adults, params.kids, params.city , params.cityLink , function(data){
       res.send(200, data);
     });
 

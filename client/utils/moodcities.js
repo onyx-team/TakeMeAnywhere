@@ -29,35 +29,8 @@ const moodCities = {
               "lng" : -80.31976
            }
           }
-       },{
-         city: 'Macau, China',
-         cityLink: 'https://www.tripadvisor.com/Attractions-g664891-Activities-Macau.html',
-         airport: 'MFM',
-         geometry: {
-               "northeast" : {
-                  "lat" : 22.2170639,
-                  "lng" : 113.5981886
-               },
-               "southwest" : {
-                  "lat" : 22.1097694,
-                  "lng" : 113.5287411
-               }
-            }
-       },{
-        city: 'Bangkok, Thailand',
-        cityLink: 'http://www.bangkok.com/most-popular-historical/',
-        airport: 'BKK',
-        geometry: {
-               "northeast" : {
-                  "lat" : 13.9551109,
-                  "lng" : 100.938408
-               },
-               "southwest" : {
-                  "lat" : 13.4940899,
-                  "lng" : 100.3278135
-               }
-            }
-       },{
+       },
+       {
          city:'New York, New York',
          cityLink: 'http://www.nycgo.com/things-to-do/attractions',
          airport:'NYC',
@@ -73,35 +46,9 @@ const moodCities = {
             }
        }],
  adventure:[{
-         city: 'San Juan, Puerto Rico',
-         cityLink: 'https://www.virtualtourist.com/travel/Caribbean_and_Central_America/Puerto_Rico/San_Juan_Municipio/San_Juan-1645724/Things_To_Do-San_Juan-TG-C-1.html',
-         airport: 'SJU'
-       },{
         city: 'Grand Canyon, Arizona',
         cityLink: 'http://grandcanyon.com/',
         airport:'PHX'
-       },{
-         city:'Bangkok, Thailand',
-         cityLink: 'http://www.bangkok.com/most-popular-historical/',
-         airport: 'BKK'
-       },{
-        city:'Machu Picchu, Peru',
-        cityLink: 'https://www.virtualtourist.com/travel/South_America/Peru/Departamento_de_Cusco/Machu_Picchu-1604535/Things_To_Do-Machu_Picchu-TG-C-1.html',
-        airport: 'CUZ'
-       },{
-         city: 'Marrakech, Morocco',
-         cityLink: 'http://www.planetware.com/tourist-attractions-/marrakesh-marrakech-mar-mar-mar.htm',
-         airport: 'RAK',
-         geometry: {
-               "northeast" : {
-                  "lat" : 31.7162668,
-                  "lng" : -7.887625799999999
-               },
-               "southwest" : {
-                  "lat" : 31.552976,
-                  "lng" : -8.128080499999999
-               }
-            }
        }],
  nature:[{
          city: 'Yellowstone National Park, Wyoming',

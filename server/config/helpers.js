@@ -1,7 +1,7 @@
 var request = require('request');
 var apikey = process.env.API_KEY || require('../key').api_key;
 
-exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb ){
+var getFlights = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
 
 //iata is necessary to specifiy type
   if(origin) origin+='-iata';
@@ -28,12 +28,12 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
       //filters from body and returns 5 lowest prices
       request.get(res.headers.location+'?apiKey='+apikey+'&pageindex=0&pagesize=5&sortorder=asc&sorttype=price' ,function(err, res, body){
 
-          body = JSON.parse(body);
-       var agents = body.Agents;
-       var carriers = body.Carriers;
-       var places = body.Places;
-       var results = [];
-       var current = 0;
+        body = JSON.parse(body);
+        var agents = body.Agents;
+        var carriers = body.Carriers;
+        var places = body.Places;
+        var results = [];
+        var current = 0;
 
         body.Itineraries.forEach(function(flight){
           //only push items within price limit
@@ -96,7 +96,6 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
           }
 
        });
-        console.log(results);
         cb(results);
 
       })
@@ -107,28 +106,76 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
 
 }
 
-// exports.getHotels = function(origin, dest, depart, returned, adults, kids, city, cityLink , cb ){
+var getLocation = function(depart, returned, adults, kids, city, cb){
+  var query = city.replace(/\s/g, '%20');
+  var getHotel = `http://partners.api.skyscanner.net/apiservices/hotels/autosuggest/v2/US/USD/en-US/${query}?apikey=${apikey}`;
+  request.get(getHotel, function(err, res, body){
+    if(!err){
+      body = JSON.parse(body);
+      cb(body.results[0].individual_id)
+    } else {
+      console.log('err',err);
+    }
+  });
+}
 
-//   let hotelSuggest = `http://partners.api.skyscanner.net/apiservices/hotels/autosuggest/v2/US/USD/en-US/${query}?apikey=${apikey}`
+var priceHotels = function(depart, returned, adults, kids, city, cb){
+  getLocation(depart, returned, adults, kids, city, function(id){
+    var guests = adults + kids;
+    var rooms = Math.ceil(guests/4);
+    var priceHotel = `http://partners.api.skyscanner.net/apiservices/hotels/liveprices/v2/US/USD/en-US/${id}/${depart}/${returned}/${guests}/${rooms}?apiKey=prtl6749387986743898559646983194`
 
-//   let hotelPrice = `http://partners.api.skyscanner.net/apiservices/hotels/liveprices/v2/US/USD/en-US/${entityid}/${depart}/${returned}/${guests}/${rooms}?apiKey=${apiKey}`
+    request.get(priceHotel, function(err, res, body){
+      if(!err){
+        var hotelStore = {};
+        body = JSON.parse(body);
+        hotelStore.main = body;
+        hotelStore.id = `${body.hotels[0].hotel_id},${body.hotels[1].hotel_id},${body.hotels[2].hotel_id},${body.hotels[3].hotel_id},${body.hotels[4].hotel_id}`;
+        hotelStore.request = body.urls.hotel_details;
+        cb(hotelStore);
+      } else {
+        console.log('err', err);
+      }
+    })
+  });
+}
 
-//   //do a post on the query
-//   request.get(hotelSuggest, {},
-//   function(err, res, body){
-//     if(!err){
-//       //filters from body and returns 5 lowest prices
-//       request.get(res.headers.location+'?apiKey='+apikey+'&pageindex=0&pagesize=5&sortorder=asc&sorttype=price' ,function(err, res, body){
+var hotelDetails = function(depart, returned, adults, kids, city, cb){
+  priceHotels(depart, returned, adults, kids, city, function(store){
+    request.get('http://partners.api.skyscanner.net' + store.request + '&hotelids=' + store.id, function(err, res, body){
+      if(!err){
+        var hotelList = [];
+        body = JSON.parse(body);
 
-//           body = JSON.parse(body);
+        for(var i = 0; i < 6; i++){
+          var hotelDeets = {};
+          if(body.hotels[i] && body.hotels_prices[i].agent_prices[0]){
+            hotelDeets.name = store.main.hotels[i].name;
+            hotelDeets.image = 'http://' + store.main.hotels[i].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
+            hotelDeets.stars = store.main.hotels[i].star_rating;
+            hotelDeets.description = body.hotels[i].description;
+            hotelDeets.link = body.hotels_prices[i].agent_prices[0].booking_deeplink;
+            hotelDeets.pricePerNight = body.hotels_prices[i].agent_prices[0].price_per_room_night;
+            hotelDeets.total = body.hotels_prices[i].agent_prices[0].price_total;
+            hotelList.push(hotelDeets);
+          }
+        }
 
+        cb(hotelList);
+      } else {
+        console.log('err',err);
+      }
+    });
+  });
+}
 
-//         cb(results);
-
-//       })
-//     } else{
-//       console.log('err',err);
-//     }
-//   });
-
-// }
+exports.flightsAndHotels = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
+  getFlights(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , function(results){
+    if(results.length > 0){
+      hotelDetails(depart, returned, adults, kids, results[0].city, function(hotels){
+        results[0].hotelList = hotels;
+        cb(results);
+      })
+    }
+  });
+}

@@ -141,7 +141,12 @@ var priceHotels = function(depart, returned, adults, kids, city, cb){
         var hotelStore = {};
         body = JSON.parse(body);
         hotelStore.main = body;
-        hotelStore.id = `${body.hotels[0].hotel_id},${body.hotels[1].hotel_id},${body.hotels[2].hotel_id},${body.hotels[3].hotel_id},${body.hotels[4].hotel_id}`;
+        if(body.hotels.length > 0) hotelStore.id = body.hotels[0].hotel_id;
+        if(body.hotels.length > 1) hotelStore.id = hotelStore.id + ',' + body.hotels[1].hotel_id;
+        if(body.hotels.length > 2) hotelStore.id = hotelStore.id + ',' + body.hotels[2].hotel_id;
+        if(body.hotels.length > 3) hotelStore.id = hotelStore.id + ',' + body.hotels[3].hotel_id;
+        if(body.hotels.length > 4) hotelStore.id = hotelStore.id + ',' + body.hotels[4].hotel_id;
+
         hotelStore.request = body.urls.hotel_details;
         cb(hotelStore);
       } else {

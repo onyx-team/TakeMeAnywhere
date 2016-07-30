@@ -5,33 +5,47 @@ import { connect } from 'react-redux';
 import { setMood } from '../actions/index';
 import { setCities } from '../actions/index';
 import { bindActionCreators } from 'redux';
+var Select = require('react-select');
 
 class MoodPage extends React.Component {
   constructor(props) {
     super(props);
+
     this.onMoodClick = this.onMoodClick.bind(this);
   }
 
+  addSelect(){
+
+    let options = [];
+
+    this.props.moods.forEach((mood, i) =>
+      options.push( { value: mood.mood, label: mood.mood, moods: mood})
+    )
+
+    return options;
+  }
+
   onMoodClick(mood) {
-    this.props.setMood(mood);
-    this.props.setCities(mood);
+    this.props.setMood(mood.moods);
+    this.props.setCities(mood.moods);
     window.location.hash ='#/constraints';
   }
 
   render() {
     return (
-      <div className='blueBackground container-fluid'>
-      {this.props.moods.map((mood, i) =>
-        <MoodPageEntry
-          onMoodClick={() => this.onMoodClick(mood) }
-          key={i}
-          moods={mood}
-          />
-      )}
+      <div id='main'>
+       <Select
+            name="form-field-name"
+            value="one"
+            placeholder="I want..."
+            options={this.addSelect()}
+            onChange={this.onMoodClick}
+        />
       </div>
     )
   }
 }
+
 
 //moodData will now be available as props in MoodPage class
 //Anytime the component updates, mapStateToProps will be called. Pass in the props here that you want to be available on your components.

@@ -1,18 +1,25 @@
-/* Main Layout */
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,700,300);
+@import url(https://fonts.googleapis.com/css?family=News+Cycle:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800);
 
+/* Main Layout */
 body {
-  background: #00c6ff; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #00c6ff , #0072ff); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #00c6ff , #0072ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+ */
+  font-family: 'News Cycle', sans-serif;
+  background: url('takemeanywhere-bg.jpg');
+  background-color: #fff;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   height: 100%;
   margin: 0px;
   padding: 0px;
 }
 
-#wrapper {
-  background: rgba(255, 255, 255, 0.9);
-  margin-top: 150px;
-  border-radius: 20px;
+#main {
+/*  background: rgba(255, 255, 255, 0.9);
+  margin-top: 50px;*/
+  border-radius: 10px;
   padding: 50px;
 }
 
@@ -20,5 +27,113 @@ body {
 /* Logo */
 
 .logo {
-  margin-bottom: 20px;
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-size: 150px;
+  margin-top: 450px;
+  margin-bottom: 0px;
 }
+
+.logo a {
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+.feature h2 {
+  color: #fff;
+}
+
+
+/* Select Menu */
+.Select-control {
+  background-color: transparent;
+  border-color: #fff;
+  border-radius: 4px;
+  color: #333;
+  cursor: default;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  height: 36px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.Select-placeholder, .Select--single > .Select-control .Select-value {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+
+.is-searchable.is-open > .Select-control {
+  color: #fff;
+  cursor: text;
+}
+.is-open > .Select-control {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  background: transparent;
+  border-color: #b3b3b3 #ccc #d9d9d9;
+}
+.is-open > .Select-control > .Select-arrow {
+  border-color: transparent transparent #999;
+  border-width: 0 5px 5px;
+}
+
+.has-value.Select--single > .Select-control .Select-value .Select-value-label,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label {
+  color: #c0392b;
+}
+.has-value.Select--single > .Select-control .Select-value a.Select-value-label,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label {
+  cursor: pointer;
+  text-decoration: none;
+}
+.has-value.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:hover,
+.has-value.Select--single > .Select-control .Select-value a.Select-value-label:focus,
+.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value a.Select-value-label:focus {
+  color: #007eff;
+  outline: none;
+  text-decoration: underline;
+}
+
+.Select-arrow {
+  border-color: #fff transparent transparent;
+  border-style: solid;
+  border-width: 5px 5px 2.5px;
+  display: inline-block;
+  height: 0;
+  width: 0;
+}
+
+.Select-clear {
+  color: #fff;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Search/Constraints Form */
+
+#search {
+  background: rgba(255, 255, 255, 0.9);
+  margin-top: 50px;
+  padding: 60px;
+}
+
+/* Travel Panel Left */
+
+.result-panel-left {
+  background: #2c3e50;
+}
+
+.result-panel-left-airline {
+  background: #fff;
+  border-bottom: 3px solid #c0392b;
+}
+

@@ -15,6 +15,43 @@ class ResultPageEntry extends React.Component {
 
     return (
       <div>
+
+      <div className="row">
+        <div className="col-md-3 result-panel-left text-center">
+          <p>Column 1</p>
+          <div className="row ">
+            <div className="col-md-4">Origin Airport</div>
+            <div className="col-md-4">Airplane Glyph</div>
+            <div className="col-md-4">{this.props.result.destinationCode}</div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-4">{this.props.result.arrivalTime}</div>
+            <div className="col-md-4"></div>
+            <div className="col-md-4">{this.props.result.departureTime}</div>
+          </div>
+
+          <div className="row">
+            <p>Flight Number:{this.props.result.flightNumber}</p>
+          </div>
+
+          <div className="row result-panel-left-airline">
+            <img className='destImg' src={this.props.result.agentImg} />
+          </div>
+
+
+        </div>
+
+        <div className="col-md-5">
+          <p>Column 2</p>
+        </div>
+
+        <div className="col-md-4">
+          <p>Column 2</p>
+        </div>
+      </div>
+
+
        <div className='result overflow' onClick={this.props.onClick}>
         <div className='description'>
           <div className='destination'>

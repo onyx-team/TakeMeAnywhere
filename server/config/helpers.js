@@ -41,6 +41,8 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
 
        body = JSON.parse(body);
 
+       console.log(origin);
+
        var agents = body.Agents;
        var carriers = body.Carriers;
        var places = body.Places;
@@ -108,7 +110,6 @@ exports.getFlights = function(origin, dest, depart, returned, priceLimit, adults
           }
 
        });
-        console.log(results);
         cb(results);
 
       })

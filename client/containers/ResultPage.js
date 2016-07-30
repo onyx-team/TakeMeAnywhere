@@ -31,8 +31,6 @@ class ResultPage extends React.Component {
     //loops through each city select by the moodselector and does a post request to the express route
     this.props.cities.forEach(function(cityObj){
       context.searchFlights(context.props.constraints[0], cityObj,  function(flights) {
-        console.log(cityObj);
-
         context.props.setFlights(flights);
       });
     });

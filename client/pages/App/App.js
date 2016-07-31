@@ -15,8 +15,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      <Header />
-        <div className="container">
+        <div>
           {this.props.children}
         </div>
       </div>

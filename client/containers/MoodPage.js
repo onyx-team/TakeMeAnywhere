@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { setMood } from '../actions/index';
 import { setCities } from '../actions/index';
 import { bindActionCreators } from 'redux';
+import Header from '../components/Header.js'
 var Select = require('react-select');
 
 class MoodPage extends React.Component {
@@ -33,15 +34,20 @@ class MoodPage extends React.Component {
 
   render() {
     return (
-      <div id='main'>
-       <Select
-            name="form-field-name"
-            value="one"
-            placeholder="I want..."
-            options={this.addSelect()}
-            onChange={this.onMoodClick}
-        />
+    <div>
+      <Header />
+      <div  className="container">
+        <div id='main'>
+         <Select
+              name="form-field-name"
+              value="one"
+              placeholder="I want..."
+              options={this.addSelect()}
+              onChange={this.onMoodClick}
+          />
+        </div>
       </div>
+    </div>
     )
   }
 }

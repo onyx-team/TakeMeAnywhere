@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ResultPageEntry from '../pages/Result/ResultPageEntry.js';
 import HotelPageEntry from '../pages/Result/HotelPageEntry.js';
+import FeaturePage from '../pages/Result/FeaturePage.js';
 import { connect } from 'react-redux';
-import { setMood } from '../actions/index';
+import { setMood, setRestaurants, setBars, setAttractions } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import resultSelector from '../actions/index';
 import moodSelector from '../actions/index';
@@ -24,24 +25,68 @@ class ResultPage extends React.Component {
     // Initial state of loaded set to false
     //Once loaded is true, the spinner will disappear
   componentWillMount() {
+
     const context = this;
+
     this.setState({
-      loaded: false
+      loaded: false,
+      feature: ""
     });
 
-    //loops through each city select by the moodselector and does a post request to the express route
+    // Loops through each city select by the moodselector and does a post request to the express route
     this.props.cities.forEach(function(cityObj){
       context.searchFlights(context.props.constraints[0], cityObj,  function(flights) {
         context.props.setFlights(flights);
       });
     });
 
-    // this.props.cities.forEach(function(cityObj){
-    //   context.fetchDescription()
-    // });
+    // Query Wikipedia for city's description
+    this.fetchDescription(this.props.cities[0].city, function(description){
+      context.setState({
+        feature: description
+      })
+    });
+
+    // Query Yelp for top 5 restaurants and set the store
+    this.searchYelp('restaurants', this.props.cities[0].city, function(data){
+      context.props.setRestaurants(data.data.businesses);
+    });
+
+    // Query Yelp for top 5 bars and set the store
+    this.searchYelp('bars', this.props.cities[0].city, function(data){
+      context.props.setBars(data.data.businesses);
+    });
+
+    // Query Yelp for top 5 tourist attractions and set the store
+    this.searchYelp('tourist attractions', this.props.cities[0].city, function(data){
+      context.props.setAttractions(data.data.businesses);
+    });
 
   };
 
+  componentDidMount(){
+  }
+
+  // Queries Yelp for Restaurants, Bars and Tourist Attractions
+  searchYelp(type, location, cb) {
+
+    const query = {
+      term: type,
+      location: location,
+      limit: 5
+    }
+
+    axios.post('/api/yelp', query)
+      .then(function(data) {
+        cb(data);
+      })
+      .catch(function(err) {
+        console.log("Couldn't grab info: " + err);
+      })
+
+  }
+
+  // Queries Skyscanner for flights
   searchFlights(options, cityObj, callback) {
 
     const envelope = {
@@ -65,9 +110,13 @@ class ResultPage extends React.Component {
       })
   }
 
+  // Fetches the City's Description from Wikipedia
   fetchDescription(city, callback){
+
+    const cityOnly = city.split(',');
+
     const query = {
-      titles: "Las Vegas"
+      titles: cityOnly[0]
     };
 
     axios.post('/api/wiki', query)
@@ -91,7 +140,9 @@ class ResultPage extends React.Component {
   render() {
     let resultsExist = true;
 
-    //sets the condition to create noresults component
+    console.log(this.props);
+
+    // Sets the condition to create noresults component
     if(this.props.results.length === 0 && this.state.loaded){
         resultsExist = false;
     }
@@ -127,6 +178,7 @@ class ResultPage extends React.Component {
           <a href="/" className="btn btn-danger row row-centered">New Search</a>
           <Loader loaded={this.state.loaded} options={options} className="spinner" />
           <NoResult exists = {resultsExist}/>
+          <FeaturePage description={this.state.feature} city={this.props.cities[0].city} img={this.props.cities[0].img}/>
           {this.props.results.sort(function(a,b){
             return a.price - b.price;
           }).map((result, i) =>
@@ -155,13 +207,24 @@ function mapStateToProps(state) {
     moods: state.moods,
     activeMood: state.activeMood,
     constraints: state.constraints,
-    cities: state.cities
+    cities: state.cities,
+    restaurants: state.restaurants,
+    bars: state.bars,
+    attractions: state.attractions
   }
 }
 
 //When passing in an object o bindActionCreators, react assumes each will be an action creator. Use this to bind your action creators to props so that you can use those functions.
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({setFlights: setFlights, resultSelector: resultSelector, setMood: setMood, moodSelector: moodSelector}, dispatch);
+  return bindActionCreators({
+    setFlights: setFlights,
+    resultSelector: resultSelector,
+    setMood: setMood,
+    moodSelector: moodSelector,
+    setRestaurants: setRestaurants,
+    setBars: setBars,
+    setAttractions: setAttractions
+  }, dispatch);
 }
 
 // Connects a React component to a Redux store.

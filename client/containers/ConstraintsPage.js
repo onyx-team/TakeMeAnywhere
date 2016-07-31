@@ -182,7 +182,7 @@ class ConstraintsPage extends React.Component {
       onChange: this.onChange
     };
     return (
-           <div className='blueBackground container-fluid'>
+           <div className="container">
         <div className='row constraint'>
           <h3>Your Airport</h3>
           <Autosuggest suggestions={suggestions}

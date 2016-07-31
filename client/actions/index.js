@@ -6,7 +6,10 @@ export const SET_MOOD = 'SET_MOOD';
 export const SET_FLIGHTS = 'SET_FLIGHTS';
 export const FETCH_MOOD = 'FETCH_MOOD';
 export const SET_CITIES = 'SET_CITIES';
-export const SET_WIKI= 'SET_WIKI';
+export const SET_WIKI = 'SET_WIKI';
+export const SET_RESTAURANTS = 'SET_RESTAURANTS';
+export const SET_BARS = 'SET_BARS';
+export const SET_ATTRACTIONS = 'SET_ATTRACTIONS';
 
 /******************************
       Action Creators
@@ -50,3 +53,28 @@ export function setFlights(flights) {
     payload: flights.data
   }
 }
+
+export function setRestaurants(restaurants) {
+  return {
+    type: SET_RESTAURANTS,
+    payload: restaurants
+  }
+}
+
+export function setBars(bars) {
+  return {
+    type: SET_BARS,
+    payload: bars
+  }
+}
+
+export function setAttractions(attractions) {
+  return {
+    type: SET_ATTRACTIONS,
+    payload: attractions
+  }
+}
+
+
+
+

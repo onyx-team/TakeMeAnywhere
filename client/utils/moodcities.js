@@ -4,6 +4,7 @@ const moodCities = {
          city: 'Las Vegas, Nevada',
          cityLink: 'http://www.vegas.com/attractions/',
          airport:'LAS',
+         img: 'https://upload.wikimedia.org/wikipedia/commons/e/e7/Las_Vegas_89.jpg',
          geometry: {
            "northeast" : {
               "lat" : 36.3806231,

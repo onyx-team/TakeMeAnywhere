@@ -1,12 +1,17 @@
 import React from 'react';
+import $ from 'jquery';
 
 class ResultPageEntry extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentWillMount(){
+    $("body").removeClass( "background-image" );
+    $("body").addClass( "flat" );
+  }
+
   render() {
-    console.log(this.props);
     let price = (''+this.props.result.price).split('.');
     if(price[1].length===1){
       price[1] += '0';
@@ -16,7 +21,13 @@ class ResultPageEntry extends React.Component {
     return (
       <div>
 
-      <div className="row">
+
+
+<div className="panel panel-default">
+  <div className="panel-heading">{this.props.result.city}</div>
+  <div className="panel-body">
+
+     <div className="row">
         <div className="col-md-3 result-panel-left text-center">
           <p>Column 1</p>
           <div className="row ">
@@ -36,40 +47,27 @@ class ResultPageEntry extends React.Component {
           </div>
 
           <div className="row result-panel-left-airline">
-            <img className='destImg' src={this.props.result.agentImg} />
+            <img className='destImg' src={this.props.result.airlineImg} />
           </div>
 
 
         </div>
 
         <div className="col-md-5">
-          <p>Column 2</p>
+          <h2 className='price'>${price}</h2>
         </div>
 
         <div className="col-md-4">
-          <p>Column 2</p>
+          <a className='btn resultBtn' target= '_blank' href={this.props.result.url}>Purchase</a>
+          <a className='btn resultBtn' target= '_blank' href={this.props.result.cityLink}>Explore</a>
         </div>
       </div>
 
+  </div>
+</div>
 
-       <div className='result overflow' onClick={this.props.onClick}>
-        <div className='description'>
-          <div className='destination'>
-          <h2>{this.props.result.city}</h2>
-            <div>
-              <h4>Airline: {this.props.result.airline}</h4>
-              <img className='destImg' src={this.props.result.airlineImg} />
-            </div>
-            <div>
-              <h4>Honored by: {this.props.result.agent}</h4>
-              <img className='destImg' src={this.props.result.agentImg} />
-            </div>
-          </div>
-        </div>
-        <h2 className='price'>${price}</h2>
-        <a className='btn resultBtn' target= '_blank' href={this.props.result.url}>Purchase</a>
-        <a className='btn resultBtn' target= '_blank' href={this.props.result.cityLink}>Explore</a>
-        </div>
+
+
       </div>
     )
   }

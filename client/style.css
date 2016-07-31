@@ -5,15 +5,43 @@
 /* Main Layout */
 body {
   font-family: 'News Cycle', sans-serif;
-  background: url('takemeanywhere-bg.jpg');
-  background-color: #fff;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.background-image {
+  background: url('takemeanywhere-bg.jpg') no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
+}
+
+.gradient {
+  background: #3a7bd5; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #3a7bd5 , #3a6073); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #3a7bd5 , #3a6073); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.flat {
+  background-color: #ecf0f1;
+}
+
+.background-result {
+  background: url('takemeanywhere-high.jpg');
+  background-color: #fff;
+}
+
+.background {
+  opacity:0.8;
+  background-color:#ccc;
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0px;
+  left:0px;
+  z-index:1000;
 }
 
 #main {
@@ -135,5 +163,26 @@ body {
 .result-panel-left-airline {
   background: #fff;
   border-bottom: 3px solid #c0392b;
+}
+
+/* Featured City */
+
+.featured {
+  background: rgba(255, 255, 255, 0.9);
+  margin-top: 50px;
+  padding: 50px;
+}
+
+.featured .headline {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+
+
+.description {
+  margin-top: 10px;
+  font-size: 13px;
 }
 

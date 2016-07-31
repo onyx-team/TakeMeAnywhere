@@ -20,5 +20,3 @@ ReactDOM.render(
     <Router history={hashHistory}>{routes}</Router>
   </Provider>
   , document.getElementById('app'));
-
-

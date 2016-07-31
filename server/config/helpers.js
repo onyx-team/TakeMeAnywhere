@@ -1,5 +1,47 @@
 var request = require('request');
 var apikey = process.env.API_KEY || require('../key').api_key;
+var yelp_client_id = process.env.API_KEY || require('../key').yelp_client_id;
+var yelp_client_secret = process.env.API_KEY || require('../key').yelp_client_secret;
+var querystring = require('querystring');
+
+
+// Yelp requires
+exports.getYelpToken = function(cb){
+  var url = 'https://api.yelp.com/oauth2/token';
+
+  const credentials = {
+      client_id: yelp_client_id,
+      client_secret: yelp_client_secret
+  }
+
+  request.post(url, {form: credentials}, function(err, res, body){
+    cb(body);
+  });
+
+};
+
+exports.queryYelp = function(query, cb){
+
+  var url = "https://api.yelp.com/v3/businesses/search"
+
+  var opts = {
+    uri:url,
+    qs: {
+      term: query.type,
+      location: query.location,
+      limit: query.limit,
+      sort: 2
+    },
+    headers: {
+    'Authorization': 'Bearer ' + query.token.access_token
+    }
+  }
+
+  request(opts, function(err, res, body){
+    const parsed = JSON.parse(body);
+    cb(parsed);
+  });
+};
 
 // This function queries wikipedia for brief excerpts
 // that will be used instead of the static links

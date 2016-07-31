@@ -24,4 +24,31 @@ module.exports = function(app, express) {
 
   })
 
+  // This route is used for Yelp queries
+  app.post('/api/yelp', function(req,res){
+
+    // This helper function gets an access token back from Yelp
+    // to be used in the authorization header
+    helpers.getYelpToken(function(token){
+
+      // Parse the token before adding it to the query
+      const parsedToken = JSON.parse(token);
+
+      // The query built using the request params
+      const query = {
+        token: parsedToken,
+        term: req.body.type,
+        location: req.body.location,
+        limit: req.body.limit,
+      }
+
+      // This is a generic helper that can used for
+      // any Yelp query
+      helpers.queryYelp(query, function(data){
+        res.send(200, data);
+      });
+    });
+
+  });
+
 }

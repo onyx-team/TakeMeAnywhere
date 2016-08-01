@@ -7,6 +7,7 @@ import CityReducer from './reducer_moodCities';
 import RestaurantsReducer from './reducer_restaurants';
 import BarsReducer from './reducer_bars';
 import AttractionsReducer from './reducer_attractions';
+import WeatherReducer from './reducer_weather';
 
 /*
   rootReducer combines all reducers from the app and combines it all into a single state object a.k.a the store;
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
   cities: CityReducer,
   restaurants: RestaurantsReducer,
   bars: BarsReducer,
-  attractions: AttractionsReducer
+  attractions: AttractionsReducer,
+  weather: WeatherReducer
 });
 
 export default rootReducer;

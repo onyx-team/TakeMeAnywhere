@@ -209,16 +209,18 @@ var hotelDetails = function(depart, returned, adults, kids, city, cb){
 
         store.main.hotels.forEach(function(){
           if(body.hotels[counter]){
-            var hotelDeets = {};
-            hotelDeets.name = store.main.hotels[counter].name;
-            hotelDeets.image = 'http://' + store.main.hotels[counter].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
-            hotelDeets.stars = store.main.hotels[counter].star_rating;
-            hotelDeets.description = body.hotels[counter].description;
-            hotelDeets.link = body.hotels_prices[counter].agent_prices[0].booking_deeplink;
-            hotelDeets.pricePerNight = body.hotels_prices[counter].agent_prices[0].price_per_room_night;
-            hotelDeets.total = body.hotels_prices[counter].agent_prices[0].price_total;
-            hotelList.push(hotelDeets);
-            counter ++
+            if(body.hotels_prices[counter].agent_prices[0]){
+              var hotelDeets = {};
+              hotelDeets.name = store.main.hotels[counter].name;
+              hotelDeets.image = 'http://' + store.main.hotels[counter].image_urls[0].replace(/{/g, '').replace(/:/g, '').replace('rmt.jpg[200,200],', '').split('[')[0];
+              hotelDeets.stars = store.main.hotels[counter].star_rating;
+              hotelDeets.description = body.hotels[counter].description;
+              hotelDeets.link = body.hotels_prices[counter].agent_prices[0].booking_deeplink;
+              hotelDeets.pricePerNight = body.hotels_prices[counter].agent_prices[0].price_per_room_night;
+              hotelDeets.total = body.hotels_prices[counter].agent_prices[0].price_total;
+              hotelList.push(hotelDeets);
+              counter ++
+            }
           }
         })
 

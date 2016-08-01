@@ -5,6 +5,27 @@ var yelp_client_secret = process.env.API_KEY || require('../key').yelp_client_se
 var querystring = require('querystring');
 
 
+
+exports.queryWeather = function(query, cb){
+  var url = "http://api.openweathermap.org/data/2.5/forecast/daily"
+
+  var opts = {
+    uri: url,
+    qs: {
+      q: query,
+      mode: "json",
+      units: "imperial",
+      APPID: "91dbac3aee5b2dff7c87591df2211148",
+      cnt: 7
+    }
+  }
+
+  request(opts, function(err, res, body){
+    const parsed = JSON.parse(body);
+    cb(parsed);
+  });
+}
+
 // Yelp requires authentication prior to any queries
 // This helper function will generate use the client_id and client_secret
 // to get back an access token

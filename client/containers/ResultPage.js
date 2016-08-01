@@ -30,7 +30,8 @@ class ResultPage extends React.Component {
 
     this.setState({
       loaded: false,
-      feature: ""
+      feature: "",
+      weather: {}
     });
 
     // Loops through each city select by the moodselector and does a post request to the express route
@@ -62,9 +63,34 @@ class ResultPage extends React.Component {
       context.props.setAttractions(data.data.businesses);
     });
 
+
+    // Query OpenWeatherMap and set the state
+    this.searchWeather(this.props.cities[0].city, function(data){
+      context.setState({
+        weather: data.data
+      })
+    });
+
+
   };
 
   componentDidMount(){
+  }
+
+  // Queries OpenWeatherMap for a 5 day forecast
+  searchWeather(city, cb){
+    const query = {
+      location: city
+    }
+
+    axios.post('/api/weather', query)
+      .then(function(data) {
+        cb(data);
+      })
+      .catch(function(err) {
+        console.log("Couldn't grab info: " + err);
+      })
+
   }
 
   // Queries Yelp for Restaurants, Bars and Tourist Attractions
@@ -194,6 +220,7 @@ class ResultPage extends React.Component {
 
       <div className="row">
         <FeaturePage
+          weather={this.state.weather}
           restaurants={this.props.restaurants}
           bars={this.props.bars}
           attractions={this.props.attractions}

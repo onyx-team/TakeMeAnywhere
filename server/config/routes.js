@@ -37,7 +37,7 @@ module.exports = function(app, express) {
       // The query built using the request params
       const query = {
         token: parsedToken,
-        term: req.body.type,
+        term: req.body.term,
         location: req.body.location,
         limit: req.body.limit,
       }

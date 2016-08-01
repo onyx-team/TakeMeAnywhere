@@ -1,5 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
+import moment from 'moment';
+const FontAwesome = require('react-fontawesome');
 
 class ResultPageEntry extends React.Component {
   constructor(props) {
@@ -7,8 +9,10 @@ class ResultPageEntry extends React.Component {
   }
 
   componentWillMount(){
-    $("body").removeClass( "background-image" );
-    $("body").addClass( "flat" );
+  }
+
+  formatTime(time){
+    return moment(time).format("h:mm A");
   }
 
   render() {
@@ -23,44 +27,52 @@ class ResultPageEntry extends React.Component {
 
 
 
-<div className="panel panel-default">
-  <div className="panel-heading">{this.props.result.city}</div>
-  <div className="panel-body">
+<div className="">
+  <div>
+     <div className="result col-xs-6 col-md-3">
+        <div className="row result-panel-left text-center">
 
-     <div className="row">
-        <div className="col-md-3 result-panel-left text-center">
-          <p>Column 1</p>
-          <div className="row ">
-            <div className="col-md-4">Origin Airport</div>
-            <div className="col-md-4">Airplane Glyph</div>
-            <div className="col-md-4">{this.props.result.destinationCode}</div>
+         <div className="row airports">
+            Destination: {this.props.result.city}
+         </div>
+
+          <div className="row airports">
+            <div className="col-md-4 airport-code">{this.props.result.originCode}</div>
+            <div className="col-md-4">
+              <FontAwesome className="rotate-45" name='plane' size='3x'/>
+            </div>
+            <div className="col-md-4 airport-code">{this.props.result.destinationCode}</div>
           </div>
 
           <div className="row">
-            <div className="col-md-4">{this.props.result.arrivalTime}</div>
+            <div className="col-md-4">{this.formatTime(this.props.result.arrivalTime)}</div>
             <div className="col-md-4"></div>
-            <div className="col-md-4">{this.props.result.departureTime}</div>
+            <div className="col-md-4">{this.formatTime(this.props.result.departureTime)}</div>
           </div>
 
           <div className="row">
-            <p>Flight Number:{this.props.result.flightNumber}</p>
+            <p>Flight Number: {this.props.result.flightNumber}</p>
           </div>
 
           <div className="row result-panel-left-airline">
             <img className='destImg' src={this.props.result.airlineImg} />
           </div>
 
+          <div className="row">
+            <h2 className='price'>${price}</h2>
+          </div>
+
+          <div className="row">
+            <a className='btn btn-primary' target= '_blank' href={this.props.result.url}>Purchase</a>
+            <a className='btn btn-primary' target= '_blank' href={this.props.result.cityLink}>Explore</a>
+          </div>
+
 
         </div>
 
-        <div className="col-md-5">
-          <h2 className='price'>${price}</h2>
-        </div>
 
-        <div className="col-md-4">
-          <a className='btn resultBtn' target= '_blank' href={this.props.result.url}>Purchase</a>
-          <a className='btn resultBtn' target= '_blank' href={this.props.result.cityLink}>Explore</a>
-        </div>
+
+
       </div>
 
   </div>
@@ -74,3 +86,6 @@ class ResultPageEntry extends React.Component {
 }
 
 export default ResultPageEntry;
+
+// <div>{this.props.result.city}</div>
+

@@ -8,8 +8,8 @@ class NoResult extends React.Component {
   render() {
     if(this.props.exists===false){
       return (
-        <div className='col-md-12'>
-          <h1 className='logoText'>Sorry, there were no flights within your constraints!</h1>
+        <div className='row'>
+          <h1 className='white text-center'>No flights match your criteria so far...</h1>
         </div>
       )
     }else{

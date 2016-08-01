@@ -5,7 +5,9 @@ var yelp_client_secret = process.env.API_KEY || require('../key').yelp_client_se
 var querystring = require('querystring');
 
 
-// Yelp requires
+// Yelp requires authentication prior to any queries
+// This helper function will generate use the client_id and client_secret
+// to get back an access token
 exports.getYelpToken = function(cb){
   var url = 'https://api.yelp.com/oauth2/token';
 
@@ -20,6 +22,8 @@ exports.getYelpToken = function(cb){
 
 };
 
+// This function queries Yelp based on the query being passed
+// It passes the results tp the callback function in object format
 exports.queryYelp = function(query, cb){
 
   var url = "https://api.yelp.com/v3/businesses/search"
@@ -27,7 +31,7 @@ exports.queryYelp = function(query, cb){
   var opts = {
     uri:url,
     qs: {
-      term: query.type,
+      term: query.term,
       location: query.location,
       limit: query.limit,
       sort: 2
@@ -43,7 +47,7 @@ exports.queryYelp = function(query, cb){
   });
 };
 
-// This function queries wikipedia for brief excerpts
+// This function queries Wikipedia for brief excerpts
 // that will be used instead of the static links
 exports.queryWiki = function(query, cb){
 
@@ -231,6 +235,8 @@ var hotelDetails = function(depart, returned, adults, kids, city, cb){
     });
   });
 }
+
+
 
 exports.flightsAndHotels = function(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , cb){
   getFlights(origin, dest, depart, returned, priceLimit, adults, kids, city, cityLink , function(results){

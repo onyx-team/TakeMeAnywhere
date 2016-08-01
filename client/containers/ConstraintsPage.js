@@ -182,8 +182,15 @@ class ConstraintsPage extends React.Component {
       onChange: this.onChange
     };
     return (
-           <div className="container">
-        <div className='row constraint'>
+
+     <div>
+        <div className="row logo text-center">
+          <h2 className="text-uppercase bolder">Travel the World Without Breaking the Bank</h2>
+        </div>
+           <div className="container search-box">
+
+
+        <div className='row'>
           <h3>Your Airport</h3>
           <Autosuggest suggestions={suggestions}
                    onSuggestionsUpdateRequested={this.onSuggestionsUpdateRequested}
@@ -194,7 +201,7 @@ class ConstraintsPage extends React.Component {
           <div className="error">{this.state.cityError}</div>
         </div>
       <div className='row'>
-        <div className='col-xs-3 constraint'>
+        <div className='col-md-4 constraint'>
           <h3>Price: ${this.state.price}</h3>
           <input type="range"
             id="price"
@@ -205,7 +212,7 @@ class ConstraintsPage extends React.Component {
             onChange={this.changePrice}
             step="50" />
         </div>
-        <div className='col-xs-3 constraint'>
+        <div className='col-md-4 constraint'>
           <h3>Departure Date</h3>
             <input type="date"
             className="form-control"
@@ -215,7 +222,7 @@ class ConstraintsPage extends React.Component {
             onChange={this.changeDepDate}/>
             <div className="error">{this.state.depDateError}</div>
         </div>
-        <div className='col-xs-3 constraint'>
+        <div className='col-md-4 constraint'>
           <h3>Return Date</h3>
           <input type="date"
             className="form-control"
@@ -227,7 +234,7 @@ class ConstraintsPage extends React.Component {
         </div>
       </div>
       <div className='row'>
-      <div className='col-xs-3 constraint'>
+      <div className='col-md-4 constraint'>
         <h3>Adults</h3>
         <select className="form-control"
           id="adults"
@@ -242,7 +249,7 @@ class ConstraintsPage extends React.Component {
           <option>6</option>
         </select>
       </div>
-      <div className='col-xs-3 constraint'>
+      <div className='col-md-4 constraint'>
         <h3>Children</h3>
         <select className="form-control"
           id="children"
@@ -259,15 +266,14 @@ class ConstraintsPage extends React.Component {
         </select>
       </div>
       </div>
-      <div className='row constraints'>
-        <div className='col-xs-12 constraints'>
-          <button className="button"
+      <div className='row text-center'>
+          <button className="btn btn-primary"
           onClick={() => this.onSubmitClick(this.state)}
           >Submit</button>
           <div className="error">{this.state.submitError}</div>
         </div>
-        </div>
       </div>
+    </div>
     )
   }
 }

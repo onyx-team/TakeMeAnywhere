@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 const FontAwesome = require('react-fontawesome');
+import moment from 'moment';
 
 class FeaturePage extends React.Component {
   constructor(props) {
@@ -16,9 +17,17 @@ class FeaturePage extends React.Component {
     };
   }
 
+ formatTime(dt){
+  if(this.props.weather.list !== undefined){
+   const day = new Date(this.props.weather.list[0].dt * 1000);
+   return moment(day).format("MMMM Do");
+  }
+ }
+
   render() {
-    console.log(this.props);
+
     return (
+
     <div>
 
     <div className="row">
@@ -99,6 +108,31 @@ class FeaturePage extends React.Component {
         </div>
     </div>
 
+
+
+
+    <div className="row text-center">
+      <h1 className="bolder">7 Day Weather Forecast</h1>
+    </div>
+
+    <div className="row text-center">
+
+     <a className="btn btn-primary" data-toggle="collapse" data-target="#collapseWeather" aria-expanded="false" aria-controls="collapseWeather">7 Day Weather Forecast</a>
+
+      <div className="row">
+         <div className="collapse result-panel-left padding" id="collapseWeather">
+          <div className="row text-center">
+            <FontAwesome name='map-marker' size='3x'/>
+          </div>
+          <div className="row text-center">
+
+            <p>Map the 7 day weather here :D </p>
+
+          </div>
+        </div>
+    </div>
+
+     </div>
 
 
     </div>

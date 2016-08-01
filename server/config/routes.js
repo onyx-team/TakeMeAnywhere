@@ -24,6 +24,18 @@ module.exports = function(app, express) {
 
   })
 
+  app.post('/api/weather', function(req,res){
+    //take in params fromt he body
+    const params = req.body.location;
+    console.log(params);
+
+    //throw them in and use the callback function to return data after it's ready
+    helpers.queryWeather(params, function(data){
+      res.send(200, data);
+    });
+
+  })
+
   // This route is used for Yelp queries
   app.post('/api/yelp', function(req,res){
 

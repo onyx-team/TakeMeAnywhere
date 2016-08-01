@@ -13,7 +13,7 @@ import axios from 'axios';
 import NoResult from '../pages/Result/NoResults';
 import $ from 'jquery';
 const Loader = require('react-loader');
-
+import { Link } from 'react-router';
 
 class ResultPage extends React.Component {
   constructor(props) {
@@ -132,69 +132,106 @@ class ResultPage extends React.Component {
 
   //Once the component receives its results, we set loaded to true to disable the spinner.
   componentWillReceiveProps(){
+    $("body").removeClass( "background-image" );
+    $("body").addClass( "background-image-repeat" );
+
     this.setState({
       loaded: true
     });
   }
 
+  componentWillUnmount(){
+    $("body").removeClass( "background-image-repeat" );
+    $("body").addClass( "background-image" );
+  }
+
   render() {
     let resultsExist = true;
-
-    console.log(this.props);
 
     // Sets the condition to create noresults component
     if(this.props.results.length === 0 && this.state.loaded){
         resultsExist = false;
     }
     let options = {
-    lines: 17,
-    length: 28,
-    width: 2,
-    radius: 36,
-    corners: 1,
-    opacity: .05,
-    rotate: 0,
-    direction: 1,
-    color: 'white',
-    speed: 1,
-    trail: 100,
-    shadow: false,
-    hwaccel: false,
-    zIndex: 2e9,
-    top: '50%',
-    left: '50%',
-    scale: 1.00
+      lines: 17,
+      length: 28,
+      width: 2,
+      radius: 36,
+      corners: 1,
+      opacity: .05,
+      rotate: 0,
+      direction: 1,
+      color: 'white',
+      speed: 1,
+      trail: 100,
+      shadow: false,
+      hwaccel: false,
+      zIndex: 2e9,
+      top: '50%',
+      left: '50%',
+      scale: 1.00
     };
 
     let hotels = [];
 
     if(this.props.results.length > 0){
-      hotels = this.props.results[0].hotelList
+      hotels = this.props.results[0].hotelList.slice(0,3)
     }
 
     return (
-      <div className="container">
+    <div>
+       <nav className="navbar navbar-default navbar-fixed-top">
+            <h1><Link to="/">TAKE ME ANYWHERE</Link></h1>
+       </nav>
+      <div className="container top">
+
+
+
+
+<Loader loaded={this.state.loaded} options={options} className="spinner">
+
+        <NoResult exists = {resultsExist}/>
+
+      <div className="row">
+        <FeaturePage
+          restaurants={this.props.restaurants}
+          bars={this.props.bars}
+          attractions={this.props.attractions}
+          description={this.state.feature}
+          city={this.props.cities[0].city}
+          img={this.props.cities[0].img}/>
+      </div>
+
         <div className='row row-centered'>
-          <a href="/" className="btn btn-danger row row-centered">New Search</a>
-          <Loader loaded={this.state.loaded} options={options} className="spinner" />
-          <NoResult exists = {resultsExist}/>
-          <FeaturePage description={this.state.feature} city={this.props.cities[0].city} img={this.props.cities[0].img}/>
-          {this.props.results.sort(function(a,b){
+          <div className="row">
+            <h1 className="bolder text-center">Let's Fly You There</h1>
+          </div>
+          {this.props.results.slice(0,4).sort(function(a,b){
             return a.price - b.price;
           }).map((result, i) =>
             <ResultPageEntry
+              city={this.props.cities[i]}
               key={i}
               result= {result}
               className='col-xs-3 col-centered' />
           )}
-          {hotels.map((result, i) =>
+        </div>
+        <div className="row">
+          <div className="row">
+            <h1 className="bolder text-center">Find a Place to Stay</h1>
+          </div>
+         {hotels.map((result, i) =>
             <HotelPageEntry
               key={i}
               result= {result}
               className='col-xs-3 col-centered' />
           )}
         </div>
+
+</Loader>
+
       </div>
+    </div>
     )
   }
 }

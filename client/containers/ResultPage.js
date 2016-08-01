@@ -4,7 +4,7 @@ import ResultPageEntry from '../pages/Result/ResultPageEntry.js';
 import HotelPageEntry from '../pages/Result/HotelPageEntry.js';
 import FeaturePage from '../pages/Result/FeaturePage.js';
 import { connect } from 'react-redux';
-import { setMood, setRestaurants, setBars, setAttractions } from '../actions/index';
+import { setMood, setRestaurants, setBars, setAttractions, setWeather } from '../actions/index';
 import { bindActionCreators } from 'redux';
 import resultSelector from '../actions/index';
 import moodSelector from '../actions/index';
@@ -30,8 +30,7 @@ class ResultPage extends React.Component {
 
     this.setState({
       loaded: false,
-      feature: "",
-      weather: {}
+      feature: ""
     });
 
     // Loops through each city select by the moodselector and does a post request to the express route
@@ -66,16 +65,11 @@ class ResultPage extends React.Component {
 
     // Query OpenWeatherMap and set the state
     this.searchWeather(this.props.cities[0].city, function(data){
-      context.setState({
-        weather: data.data
-      })
+      context.props.setWeather(data.data);
     });
 
 
   };
-
-  componentDidMount(){
-  }
 
   // Queries OpenWeatherMap for a 5 day forecast
   searchWeather(city, cb){
@@ -172,6 +166,7 @@ class ResultPage extends React.Component {
   }
 
   render() {
+    console.log(this.props.weather);
     let resultsExist = true;
 
     // Sets the condition to create noresults component
@@ -220,7 +215,7 @@ class ResultPage extends React.Component {
 
       <div className="row">
         <FeaturePage
-          weather={this.state.weather}
+          weather={this.props.weather}
           restaurants={this.props.restaurants}
           bars={this.props.bars}
           attractions={this.props.attractions}
@@ -274,7 +269,8 @@ function mapStateToProps(state) {
     cities: state.cities,
     restaurants: state.restaurants,
     bars: state.bars,
-    attractions: state.attractions
+    attractions: state.attractions,
+    weather: state.weather
   }
 }
 
@@ -287,7 +283,8 @@ function mapDispatchToProps(dispatch) {
     moodSelector: moodSelector,
     setRestaurants: setRestaurants,
     setBars: setBars,
-    setAttractions: setAttractions
+    setAttractions: setAttractions,
+    setWeather: setWeather
   }, dispatch);
 }
 

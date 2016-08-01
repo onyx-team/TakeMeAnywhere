@@ -10,6 +10,8 @@ export const SET_WIKI = 'SET_WIKI';
 export const SET_RESTAURANTS = 'SET_RESTAURANTS';
 export const SET_BARS = 'SET_BARS';
 export const SET_ATTRACTIONS = 'SET_ATTRACTIONS';
+export const SET_WEATHER = 'SET_WEATHER';
+
 
 /******************************
       Action Creators
@@ -72,6 +74,13 @@ export function setAttractions(attractions) {
   return {
     type: SET_ATTRACTIONS,
     payload: attractions
+  }
+}
+
+export function setWeather(weather) {
+  return {
+    type: SET_WEATHER,
+    payload: weather
   }
 }
 

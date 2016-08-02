@@ -77,7 +77,15 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: #fff;
   font-size: 150px;
-  margin-top: 450px;
+  margin-top: 25%;
+  margin-bottom: 0px;
+}
+
+.logo-b {
+  font-family: 'Open Sans', sans-serif;
+  color: #fff;
+  font-size: 150px;
+  margin-top: 10%;
   margin-bottom: 0px;
 }
 

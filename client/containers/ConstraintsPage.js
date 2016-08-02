@@ -184,7 +184,7 @@ class ConstraintsPage extends React.Component {
     return (
 
      <div>
-        <div className="row logo text-center">
+        <div className="row logo-b text-center">
           <h2 className="text-uppercase bolder">Travel the World Without Breaking the Bank</h2>
         </div>
            <div className="container search-box">

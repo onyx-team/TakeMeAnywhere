@@ -48,6 +48,8 @@ class FeaturePage extends React.Component {
         <a className="btn btn-primary" data-toggle="collapse" data-target="#collapseAttractions" aria-expanded="false" aria-controls="collapseAttractions">Tourist Attractions</a>
     </div>
 
+  <div className="row">
+
     <div className="col-md-4">
         <div className="collapse result-panel-left padding" id="collapseRestaurants">
           <div className="row text-center">
@@ -107,25 +109,28 @@ class FeaturePage extends React.Component {
     </div>
 
 
+  </div>
 
+
+
+
+    <div className="row text-center">
 
     <div className="row text-center">
       <h1 className="bolder">7 Day Weather Forecast</h1>
     </div>
-
-    <div className="row text-center">
 
      <a className="btn btn-primary" data-toggle="collapse" data-target="#collapseWeather" aria-expanded="false" aria-controls="collapseWeather">7 Day Weather Forecast</a>
 
       <div className="row">
          <div className="collapse result-panel-left padding" id="collapseWeather">
           <div className="row text-center">
-            <FontAwesome name='map-marker' size='3x'/>
+            <FontAwesome name='sun-o' size='3x'/>
           </div>
           <div className="row text-center">
             {console.log(this.props.weather)}
             {this.props.weather.map((elem, i) =>
-              <div className="row">
+              <div className="col-md-3">
                 <h3>{this.formatTime(elem.dt)}</h3>
                 <h3>{elem.weather[0].main}</h3>
                 <h4>Low: {elem.temp.min}F | High: {elem.temp.max}F</h4>

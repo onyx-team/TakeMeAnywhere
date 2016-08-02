@@ -65,7 +65,7 @@ class ResultPage extends React.Component {
 
     // Query OpenWeatherMap and set the state
     this.searchWeather(this.props.cities[0].city, function(data){
-      context.props.setWeather(data.data);
+      context.props.setWeather(data.data.list);
     });
 
 
@@ -166,7 +166,6 @@ class ResultPage extends React.Component {
   }
 
   render() {
-    console.log(this.props.weather);
     let resultsExist = true;
 
     // Sets the condition to create noresults component

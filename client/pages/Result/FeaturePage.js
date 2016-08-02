@@ -18,10 +18,8 @@ class FeaturePage extends React.Component {
   }
 
  formatTime(dt){
-  if(this.props.weather.list !== undefined){
-   const day = new Date(this.props.weather.list[0].dt * 1000);
+   const day = new Date(dt * 1000);
    return moment(day).format("MMMM Do");
-  }
  }
 
   render() {
@@ -125,9 +123,14 @@ class FeaturePage extends React.Component {
             <FontAwesome name='map-marker' size='3x'/>
           </div>
           <div className="row text-center">
-
-            <p>Map the 7 day weather here :D </p>
-
+            {console.log(this.props.weather)}
+            {this.props.weather.map((elem, i) =>
+              <div className="row">
+                <h3>{this.formatTime(elem.dt)}</h3>
+                <h3>{elem.weather[0].main}</h3>
+                <h4>Low: {elem.temp.min}F | High: {elem.temp.max}F</h4>
+              </div>
+            )}
           </div>
         </div>
     </div>
